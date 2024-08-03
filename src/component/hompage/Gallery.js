@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import tattooing from '../../assets/services/1.jpg';
 import piercing from '../../assets/services/2.jpg';
@@ -39,20 +39,28 @@ const GalleryHeader = styled.div`
 `;
 
 const GalleryTitle = styled.h2`
-  font-size: 32px;
+  font-size: 42px;
   font-weight: bold;
   margin: 0;
+  position: relative;
+  padding-left: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-
-  @media (min-width: 768px) {
-    font-size: 40px;
-    letter-spacing: 1.5px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 80%;
+    background-color: #e53935;
   }
-
-  @media (min-width: 1024px) {
-    font-size: 48px;
-    letter-spacing: 2px;
+   @media (max-width: 480px) {
+    font-size: 22px;
+  }
+    @media (max-width: 768px) {
+    font-size: 32px;
   }
 `;
 
@@ -152,31 +160,97 @@ const ImageTitle = styled.h3`
   }
 `;
 
-const NavigationArrow = styled(motion.button)`
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalImage = styled(motion.img)`
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  object-fit: contain;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  color: #fff;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+`;
+
+const ThumbnailGallery = styled.div`
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+`;
+
+const Thumbnail = styled.img`
+  height: 60px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid ${props => props.selected ? 'white' : 'transparent'};
+`;
+
+const NavigationArrow = styled(motion.button)`
+  background-color: #eee;
+  
+  border-radius: 50px;
+  color: ##f9f9ee;
   font-size: 24px;
   cursor: pointer;
   position: absolute;
   top: 50%;
-  left: -30px;
   transform: translateY(-50%);
   z-index: 10;
 
+  &.left {
+    left: 20px;
+  }
+
+  &.right {
+    right: 20px;
+  }
+
   @media (min-width: 768px) {
     font-size: 28px;
-    left: -40px;
   }
 
   @media (min-width: 1024px) {
     font-size: 32px;
-    left: -50px;
   }
 `;
 
 const Gallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const images = [
     { src: tattooing, alt: "Tattooing", title: "Expert Tattooing" },
@@ -191,6 +265,27 @@ const Gallery = () => {
     { src: design, alt: "Design", title: "Custom Designs" },
   ];
 
+  const openModal = (index) => {
+    setSelectedImageIndex(index);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImageIndex(null);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    if (event.key === 'ArrowRight') setSelectedImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <GallerySection>
       <GalleryHeader>
@@ -204,12 +299,12 @@ const Gallery = () => {
         </ViewAllLink>
       </GalleryHeader>
       <GalleryGrid>
-        
         {images.map((image, index) => (
           <GalleryImageWrapper
             key={index}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            onClick={() => openModal(index)}
           >
             <GalleryImage src={image.src} alt={image.alt} />
             <ImageOverlay
@@ -225,6 +320,55 @@ const Gallery = () => {
           </GalleryImageWrapper>
         ))}
       </GalleryGrid>
+      <AnimatePresence>
+        {modalIsOpen && (
+          <ModalOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <ModalContent onClick={(e) => e.stopPropagation()}>
+              <ModalImage 
+                src={images[selectedImageIndex].src} 
+                alt={images[selectedImageIndex].alt}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
+              />
+              <CloseButton onClick={closeModal}>&times;</CloseButton>
+              <NavigationArrow
+                className="left"
+                onClick={() => setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                &#8249;
+              </NavigationArrow>
+              <NavigationArrow
+                className="right"
+                onClick={() => setSelectedImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                &#8250;
+              </NavigationArrow>
+              <ThumbnailGallery>
+                {images.map((image, index) => (
+                  <Thumbnail 
+                    key={index} 
+                    src={image.src} 
+                    alt={image.alt} 
+                    onClick={() => setSelectedImageIndex(index)}
+                    selected={index === selectedImageIndex}
+                  />
+                ))}
+              </ThumbnailGallery>
+            </ModalContent>
+          </ModalOverlay>
+        )}
+      </AnimatePresence>
     </GallerySection>
   );
 };

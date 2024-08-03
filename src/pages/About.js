@@ -3,6 +3,7 @@ import WhoWeAre from './../component/about/WhoWeAre';
 import TattooStudioSection from '../component/about/TattooStudioSection';
 import LatestWorks from '../component/about/LatestWorks';
 import OurStaff from '../component/hompage/OurStaff';
+import UserTestimonials from '../component/hompage/UserTestimonials';
 
 const About = () => {
   return (
@@ -11,6 +12,7 @@ const About = () => {
       <TattooStudioSection />
       <LatestWorks />
       <OurStaff />
+      <UserTestimonials />
 
     </div>
   )

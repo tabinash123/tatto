@@ -167,7 +167,6 @@ const TattooStudioSection = () => {
           services with the highest service standards, is ISO certified and cost efficient, and
           will effectively allow you to save valuable time and resources.
         </Description>
-        <Button>READ MORE</Button>
       </ContentContainer>
     </SectionContainer>
   );

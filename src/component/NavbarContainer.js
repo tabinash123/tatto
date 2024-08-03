@@ -13,19 +13,22 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #1c1c1c;
+  padding: 15px 30px;
+  background-color: #000;
+  border-bottom: 2px solid #e53935;
 `;
 
 const Logo = styled.div`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  color: #d4a056;
+  color: #e53935;
+  font-family: 'Brush Script MT', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const NavItems = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 30px;
 
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
@@ -35,30 +38,36 @@ const NavItems = styled.div`
 const NavItem = styled(Link)`
   color: #fff;
   font-size: 16px;
+  font-weight: 700; // Increased font weight
   cursor: pointer;
   text-decoration: none;
   position: relative;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
   &::after {
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 50%;
-    width: 0;
+    left: 0;
+    width: 100%;
     height: 2px;
-    background-color: #d4a056;
-    transition: width 0.3s ease, left 0.3s ease;
+    background-color: #e53935;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
   }
 
   &:hover::after {
-    width: 100%;
-    left: 0;
+    transform: scaleX(1);
   }
 `;
 
 const ContactInfo = styled.div`
-  color: #fff;
-  font-size: 16px;
+  color: #e53935;
+  font-size: 18px;
+  font-weight: 700; // Increased font weight
+  font-family: 'Courier New', monospace;
 
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
@@ -80,9 +89,10 @@ const Drawer = styled.div`
   right: ${props => props.open ? '0' : '-100%'};
   width: 250px;
   height: 100%;
-  background-color: #1c1c1c;
+  background-color: #000;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
+  border-left: 2px solid #e53935;
 `;
 
 const DrawerHeader = styled.div`
@@ -90,17 +100,19 @@ const DrawerHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  border-bottom: 2px solid #e53935;
 `;
 
 const DrawerLogo = styled.div`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
-  color: #d4a056;
+  color: #e53935;
+  font-family: 'Brush Script MT', cursive;
 `;
 
 const DrawerCloseButton = styled.div`
   cursor: pointer;
-  color: #fff;
+  color: #e53935;
 `;
 
 const DrawerNavItems = styled.div`
@@ -112,12 +124,21 @@ const DrawerNavItems = styled.div`
 const DrawerNavItem = styled(Link)`
   color: #fff;
   font-size: 16px;
-  padding: 10px 0;
+  font-weight: 700; // Increased font weight
+  padding: 15px 0;
   text-decoration: none;
   border-bottom: 1px solid #333;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
 
   &:last-child {
     border-bottom: none;
+  }
+
+  &:hover {
+    color: #e53935;
   }
 `;
 
@@ -130,26 +151,26 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <Logo>TattooStudio</Logo>
+      <Logo>Ink Masters</Logo>
       <NavItems>
         <NavItem to="/">HOME</NavItem>
-        <NavItem to="/about">ABOUT US</NavItem>
+        <NavItem to="/about">About Us</NavItem>
         <NavItem to="/contact">CONTACT</NavItem>
       </NavItems>
       <ContactInfo>+1 (234) 56-789</ContactInfo>
       <MenuIcon onClick={toggleDrawer}>
-        <Menu color="#fff" size={24} />
+        <Menu color="#e53935" size={24} />
       </MenuIcon>
       <Drawer open={isDrawerOpen}>
         <DrawerHeader>
-          <DrawerLogo>Castato</DrawerLogo>
+          <DrawerLogo>Ink Masters</DrawerLogo>
           <DrawerCloseButton onClick={toggleDrawer}>
-            <X color="#fff" size={24} />
+            <X color="#e53935" size={24} />
           </DrawerCloseButton>
         </DrawerHeader>
         <DrawerNavItems>
           <DrawerNavItem to="/" onClick={toggleDrawer}>Home</DrawerNavItem>
-          <DrawerNavItem to="/about" onClick={toggleDrawer}>About</DrawerNavItem>
+          <DrawerNavItem to="/about" onClick={toggleDrawer}>About US</DrawerNavItem>
           <DrawerNavItem to="/contact" onClick={toggleDrawer}>Contact</DrawerNavItem>
         </DrawerNavItems>
       </Drawer>

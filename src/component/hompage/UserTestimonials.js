@@ -7,7 +7,7 @@ import staff1 from '../../assets/services/1.jpg';
 import staff2 from '../../assets/services/2.jpg';
 import staff3 from '../../assets/services/5.jpg';
 
-const StaffSection = styled.section`
+const TestimonialSection = styled.section`
   background-color: #121212;
   color: white;
   padding: 90px 80px;
@@ -43,62 +43,55 @@ const Title = styled.h2`
     background-color: #e53935;
   }
    @media (max-width: 480px) {
-  font-size: 22px;
+    font-size: 22px;
   }
     @media (max-width: 768px) {
-  font-size: 32px;
+    font-size: 32px;
   }
-
 `;
 
-
-const StaffMember = styled.div`
+const TestimonialItem = styled.div`
   text-align: left;
   padding: 0 15px;
 `;
 
-const StaffImageWrapper = styled.div`
-  width: 100%;
-  height: 400px;
+const TestimonialImageWrapper = styled.div`
+  width: 100px;
+  height: 100px;
   overflow: hidden;
+  border-radius: 50%;
   margin-bottom: 20px;
-
-  @media (max-width: 1024px) {
-    height: 350px;
-  }
-
-  @media (max-width: 768px) {
-    height: 300px;
-  }
-
-  @media (max-width: 480px) {
-    height: 250px;
-  }
 `;
 
-const StaffImage = styled.img`
+const TestimonialImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(100%);
 `;
 
-const StaffName = styled.h3`
-  font-size: 24px;
+const TestimonialContent = styled.p`
+  font-size: 16px;
+  color: #fff;
+  margin: 0 0 15px 0;
+`;
+
+const TestimonialName = styled.h3`
+  font-size: 18px;
   margin: 0 0 5px 0;
   color: white;
 `;
 
-const StaffTitle = styled.p`
-  font-size: 16px;
+const TestimonialTitle = styled.p`
+  font-size: 14px;
   color: #888;
-  margin: 0 0 15px 0;
+  margin: 0;
 `;
 
 const RedLine = styled.div`
   height: 2px;
   background-color: #e53935;
   width: 40px;
+  margin-bottom: 15px;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -124,18 +117,33 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const OurStaff = () => {
-  const staffMembers = [
-    { name: 'Charles Wade', title: 'Tattoo Master, Founder', image: staff1 },
-    { name: 'Henry Richard', title: 'Tattoo Master', image: staff2 },
-    { name: 'Walter Evans', title: 'Junior Tattoo Master', image: staff3 },
+const UserTestimonials = () => {
+  const testimonials = [
+    { 
+      name: 'John Doe', 
+      title: 'Satisfied Customer', 
+      image: staff1,
+      content: 'Absolutely love my new tattoo! The artists here are true professionals and made the whole experience enjoyable.'
+    },
+    { 
+      name: 'Jane Smith', 
+      title: 'Repeat Client', 
+      image: staff2,
+      content: 'I ve been coming here for years and every tattoo is a masterpiece. The attention to detail is unmatched.'
+    },
+    { 
+      name: 'Mike Johnson', 
+      title: 'First-Time Client', 
+      image: staff3,
+      content: 'As a first-timer, I was nervous, but the staff made me feel comfortable throughout the entire process. Highly recommend!'
+    },
   ];
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -158,25 +166,25 @@ const OurStaff = () => {
   };
 
   return (
-    <StaffSection>
+    <TestimonialSection>
       <SectionHeader>
-        <Title>OUR STAFF</Title>
-   
+        <Title>CLIENT TESTIMONIALS</Title>
       </SectionHeader>
       <StyledSlider {...settings}>
-        {staffMembers.map((member, index) => (
-          <StaffMember key={index}>
-            <StaffImageWrapper>
-              <StaffImage src={member.image} alt={member.name} />
-            </StaffImageWrapper>
-            <StaffName>{member.name}</StaffName>
-            <StaffTitle>{member.title}</StaffTitle>
+        {testimonials.map((testimonial, index) => (
+          <TestimonialItem key={index}>
+            <TestimonialImageWrapper>
+              <TestimonialImage src={testimonial.image} alt={testimonial.name} />
+            </TestimonialImageWrapper>
             <RedLine />
-          </StaffMember>
+            <TestimonialContent>"{testimonial.content}"</TestimonialContent>
+            <TestimonialName>{testimonial.name}</TestimonialName>
+            <TestimonialTitle>{testimonial.title}</TestimonialTitle>
+          </TestimonialItem>
         ))}
       </StyledSlider>
-    </StaffSection>
+    </TestimonialSection>
   );
 };
 
-export default OurStaff;
+export default UserTestimonials;
