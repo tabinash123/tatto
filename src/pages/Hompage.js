@@ -7,6 +7,7 @@ import Stats from '../component/hompage/Stats';
 import Gallery from '../component/hompage/Gallery';
 import PricingPlans from '../component/hompage/PricingPlans';
 import Map  from '../component/hompage/Map';
+import GetInTouch from '../component/hompage/GetInTouch';
 
 
 const Hompage = () => {
@@ -16,9 +17,10 @@ const Hompage = () => {
           <AboutUs />
           <Services />
           <OurStaff />
-      <Stats />
+      {/* <Stats /> */}
       <PricingPlans />
       <Gallery />
+      <GetInTouch />
       <Map />
     </div>
   )

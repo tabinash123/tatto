@@ -39,49 +39,37 @@ const TitleNumber = styled.span`
   margin-right: 10px;
 `;
 
-const FirstRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
-const TextContent = styled.div`
-  flex: 0 0 48%;
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  @media (max-width: 768px) {
+  gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Description = styled.p`
   color: #666;
-  margin-bottom: 20px;
+  margin: auto auto;
   line-height: 1.6;
-`;
-
-const Button = styled.button`
-  background-color: #e57373;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-`;
-
-const FirstRowImages = styled.div`
-  flex: 0 0 48%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const SecondRow = styled.div`
-  display: flex;
-  justify-content: space-between;
+  grid-column: span 2;
+  @media (max-width: 768px) {
+    grid-column: span 2;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const ServiceItem = styled.div`
   position: relative;
-  width: ${props => props.firstRow ? '48%' : '23%'};
-  height: ${props => props.firstRow ? '200px' : '150px'};
+  width: 100%;
+  height: 200px;
+  @media (max-width: 768px) {
+  // width: 150px;
+    height: 150px;
+  }
 `;
 
 const ServiceImage = styled.img`
@@ -97,23 +85,31 @@ const ServiceLabel = styled.div`
   background-color: white;
   padding: 8px 15px;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   @media (max-width: 768px) {
+    // height: 150px;
+    width: 100%;
+    left: 0;
+  // font-weight: bold;
+  font-size: 10px;
+  }
 `;
 
 const services = [
-  { name: 'TATTOOING', image: tattooing, firstRow: true },
-  { name: 'PIERCING', image: piercing, firstRow: true },
+  { name: 'TATTOOING', image: tattooing },
+  { name: 'PIERCING', image: piercing },
   { name: 'MODIFICATIONS', image: Modification },
   { name: 'TATTOO DESIGN', image: design },
   { name: 'CONSULTATION', image: consultation },
+  { name: 'CONSULTATION', image: consultation },
+  { name: 'TRIBAL TATTOO', image: tribal },
+  { name: 'CONSULTATION', image: consultation },
+  { name: 'TRIBAL TATTOO', image: tribal },
   { name: 'TRIBAL TATTOO', image: tribal },
 ];
 
 const TattooServices = () => {
-  const firstRowServices = services.filter(service => service.firstRow);
-  const secondRowServices = services.filter(service => !service.firstRow);
-
   return (
     <ServicesSection>
       <SectionHeader>
@@ -123,31 +119,26 @@ const TattooServices = () => {
           OUR BEST SERVICES
         </Title>
       </SectionHeader>
-      <FirstRow>
-        <TextContent>
-          <Description>
-            Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis
-            bibendum auctor, nisi elit consequat ipsum, nec sagittis sem.
-          </Description>
-          <Button>MORE SERVICES</Button>
-        </TextContent>
-        <FirstRowImages>
-          {firstRowServices.map((service, index) => (
-            <ServiceItem key={index} firstRow={true}>
-              <ServiceImage src={service.image} alt={service.name} />
-              <ServiceLabel>{service.name}</ServiceLabel>
-            </ServiceItem>
-          ))}
-        </FirstRowImages>
-      </FirstRow>
-      <SecondRow>
-        {secondRowServices.map((service, index) => (
-          <ServiceItem key={index} firstRow={false}>
+      <GridContainer>
+        <Description>
+          We love what we do and we put our heart and soul into every tattoo we ink.
+          We welcome people's personal concepts and ideas: thought is free.
+          We are one of the best tattoo studio 
+      
+        </Description>
+        {services.slice(0, 1).map((service, index) => (
+          <ServiceItem key={index}>
             <ServiceImage src={service.image} alt={service.name} />
             <ServiceLabel>{service.name}</ServiceLabel>
           </ServiceItem>
         ))}
-      </SecondRow>
+        {services.slice(1).map((service, index) => (
+          <ServiceItem key={index}>
+            <ServiceImage src={service.image} alt={service.name} />
+            <ServiceLabel>{service.name}</ServiceLabel>
+          </ServiceItem>
+        ))}
+      </GridContainer>
     </ServicesSection>
   );
 };

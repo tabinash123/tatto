@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const breakpoints = {
+  mobile: '576px',
+  tablet: '768px',
+  desktop: '1024px',
+};
+
 const PricingSection = styled.section`
   font-family: Arial, sans-serif;
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 90%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-width: 95%;
+    padding: 15px;
+  }
 `;
 
 const Title = styled.h2`
@@ -17,6 +32,14 @@ const Title = styled.h2`
     content: '03 ';
     font-weight: bold;
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 24px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 22px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -24,6 +47,15 @@ const Subtitle = styled.p`
   font-size: 14px;
   margin-bottom: 20px;
   max-width: 70%;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 13px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 12px;
+    max-width: 100%;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -40,6 +72,10 @@ const RightColumn = styled.div`
   background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding: 20px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 15px;
+  }
 `;
 
 const ServiceItem = styled.div`
@@ -62,6 +98,16 @@ const ServiceItem = styled.div`
     border-bottom: 10px solid transparent;
     border-left: 10px solid ${props => props.active ? '#e57373' : '#f5f5f5'};
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 12px;
+    padding: 10px;
+  }
 `;
 
 const TattooItem = styled.div`
@@ -79,12 +125,20 @@ const TattooName = styled.h3`
   font-size: 16px;
   margin: 0;
   font-weight: normal;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 14px;
+  }
 `;
 
 const TattooDescription = styled.p`
   font-size: 12px;
   color: #666;
   margin: 5px 0 0;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 11px;
+  }
 `;
 
 const Price = styled.div`
@@ -97,6 +151,12 @@ const Price = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: bold;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
 `;
 
 const PricingPlans = () => {
@@ -140,7 +200,7 @@ const PricingPlans = () => {
             <TattooItem key={tattoo.name}>
               <TattooInfo>
                 <TattooName>{tattoo.name}</TattooName>
-                <TattooDescription>Proin gravida nibh vel velit auctor aliquet.</TattooDescription>
+                {/* <TattooDescription>Proin gravida nibh vel velit auctor aliquet.</TattooDescription> */}
               </TattooInfo>
               <Price>${tattoo.price}</Price>
             </TattooItem>
@@ -150,5 +210,6 @@ const PricingPlans = () => {
     </PricingSection>
   );
 };
+
 
 export default PricingPlans;
