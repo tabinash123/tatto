@@ -177,7 +177,7 @@ const UserTestimonials = () => {
               <TestimonialImage src={testimonial.image} alt={testimonial.name} />
             </TestimonialImageWrapper>
             <RedLine />
-            <TestimonialContent>"{testimonial.content}"</TestimonialContent>
+            <TestimonialContent>{testimonial.content}</TestimonialContent>
             <TestimonialName>{testimonial.name}</TestimonialName>
             <TestimonialTitle>{testimonial.title}</TestimonialTitle>
           </TestimonialItem>
