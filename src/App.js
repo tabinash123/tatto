@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Hompage';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Gallary from './pages/Gallary';
+import Services from './pages/Services';
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/gallary" element={<Gallary />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
       <Footer />
     </Router>

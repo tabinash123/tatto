@@ -160,7 +160,7 @@ const Image = styled.img`
 
 const AboutUs = () => (
   <AboutSection>
-    <Title>About Us</Title>
+    <Title>Introduction</Title>
     <ContentWrapper>
       <TextContent>
         <Subtitle>We are a professional team of tattoists</Subtitle>

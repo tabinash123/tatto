@@ -123,8 +123,8 @@ const DrawerNavItems = styled.div`
 
 const DrawerNavItem = styled(Link)`
   color: #fff;
-  font-size: 16px;
-  font-weight: 700; // Increased font weight
+  font-size: 18px;
+  font-weight: 900; // Increased font weight
   padding: 15px 0;
   text-decoration: none;
   border-bottom: 1px solid #333;
@@ -156,6 +156,8 @@ const Navbar = () => {
         <NavItem to="/">HOME</NavItem>
         <NavItem to="/about">About Us</NavItem>
         <NavItem to="/contact">CONTACT</NavItem>
+        <NavItem to="/gallary">Gallary</NavItem>
+        <NavItem to="/services">Services</NavItem>
       </NavItems>
       <ContactInfo>+1 (234) 56-789</ContactInfo>
       <MenuIcon onClick={toggleDrawer}>
@@ -172,6 +174,8 @@ const Navbar = () => {
           <DrawerNavItem to="/" onClick={toggleDrawer}>Home</DrawerNavItem>
           <DrawerNavItem to="/about" onClick={toggleDrawer}>About US</DrawerNavItem>
           <DrawerNavItem to="/contact" onClick={toggleDrawer}>Contact</DrawerNavItem>
+          <DrawerNavItem to="/gallary" onClick={toggleDrawer}>Gallary</DrawerNavItem>
+          <DrawerNavItem to="/services" onClick={toggleDrawer}>Services</DrawerNavItem>
         </DrawerNavItems>
       </Drawer>
     </NavbarContainer>

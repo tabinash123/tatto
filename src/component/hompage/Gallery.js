@@ -39,28 +39,20 @@ const GalleryHeader = styled.div`
 `;
 
 const GalleryTitle = styled.h2`
-  font-size: 42px;
+  font-size: 32px;
   font-weight: bold;
   margin: 0;
-  position: relative;
-  padding-left: 20px;
   text-transform: uppercase;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 80%;
-    background-color: #e53935;
+  letter-spacing: 1px;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+    letter-spacing: 1.5px;
   }
-   @media (max-width: 480px) {
-    font-size: 22px;
-  }
-    @media (max-width: 768px) {
-    font-size: 32px;
+
+  @media (min-width: 1024px) {
+    font-size: 48px;
+    letter-spacing: 2px;
   }
 `;
 
