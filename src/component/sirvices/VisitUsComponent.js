@@ -8,7 +8,6 @@ const OuterContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #1a1a1a;
-  min-height: 100vh;
   padding: 20px;
 `;
 
