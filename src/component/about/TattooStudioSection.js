@@ -1,175 +1,214 @@
 import React from 'react';
 import styled from 'styled-components';
-import tattooArtistImage from '../../assets/services/3.jpg';
+import { Users, Globe, Palette, Clock, Shield, PhoneCall } from 'lucide-react';
 
 const breakpoints = {
-  mobile: '576px',
+  mobile: '480px',
   tablet: '768px',
   desktop: '1024px',
 };
 
-const SectionContainer = styled.div`
-  display: flex;
+const SectionContainer = styled.section`
+  background-color: #111;
+  color: #d4af37;
+  padding: 60px 20px;
+  font-family: 'Fira Sans', sans-serif;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    padding: 80px 40px;
+  }
+`;
+
+const ContentWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
-    padding: 15px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 10px;
+  @media (min-width: ${breakpoints.tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
   }
 `;
 
-const ImageContainer = styled.div`
-  width: 450px;
-  height: 400px;
-  position: relative;
+const LeftColumn = styled.div`
+  margin-bottom: 40px;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    height: 250px;
+  @media (min-width: ${breakpoints.tablet}) {
+    flex: 1;
+    margin-bottom: 0;
   }
 `;
 
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+const RightColumn = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
 
-const ImageBorder = styled.div`
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  right: 20px;
-  bottom: 20px;
-  border-left: 20px solid #000;
-  border-top: 20px solid #000;
-  z-index: -1;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    top: -10px;
-    left: -10px;
-    right: 10px;
-    bottom: 10px;
-    border-left-width: 10px;
-    border-top-width: 10px;
-  }
-`;
-
-const PlusStrip = styled.div`
-  position: absolute;
-  top: 0;
-  left: -40px;
-  width: 20px;
-  height: 100%;
-  background-color: #000;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background-color: #fff;
+  @media (min-width: ${breakpoints.mobile}) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
-    display: none;
+  @media (min-width: ${breakpoints.desktop}) {
+    flex: 2;
+    grid-template-columns: repeat(3, 1fr);
   }
-`;
-
-const ContentContainer = styled.div`
-  flex: 1;
-  padding-left: 60px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding-left: 0;
-  }
-`;
-
-const SubTitle = styled.h3`
-  color: #8B0000;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-weight: 600;
 `;
 
 const Title = styled.h2`
-  font-size: 36px;
-  color: #333;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2rem;
   margin-bottom: 20px;
-  line-height: 1.2;
+  position: relative;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 30px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, #f2d472);
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: 2.5rem;
   }
 `;
 
 const Description = styled.p`
-  font-size: 14px;
-  color: #555;
+  font-size: 1rem;
   line-height: 1.6;
-  margin-bottom: 15px;
-`;
+  margin-bottom: 30px;
+  color: #cccccc;
 
-const Button = styled.button`
-  background-color: #8B0000;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 14px;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-weight: 600;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 100%;
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: 1.1rem;
   }
 `;
 
-const TattooStudioSection = () => {
+const Button = styled.button`
+  background: linear-gradient(45deg, #d4af37, #f2d472);
+  border: none;
+  padding: 12px 25px;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1rem;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:hover {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  }
+
+  @media (min-width: ${breakpoints.mobile}) {
+    width: auto;
+  }
+`;
+
+const FeatureItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
+
+const IconWrapper = styled.div`
+  background: linear-gradient(45deg, #d4af37, #f2d472);
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 15px;
+  flex-shrink: 0;
+`;
+
+const FeatureContent = styled.div``;
+
+const FeatureTitle = styled.h3`
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    font-size: 1.2rem;
+  }
+`;
+
+const FeatureDescription = styled.p`
+  font-size: 0.9rem;
+  line-height: 1.4;
+    color: #cccccc;
+
+`;
+
+const WhyChooseUsSection = () => {
   return (
     <SectionContainer>
-      <PlusStrip />
-      <ImageContainer>
-        <Image src={tattooArtistImage} alt="Tattoo artist" />
-        <ImageBorder />
-      </ImageContainer>
-      <ContentContainer>
-        <SubTitle>BEST TATTOO STUDIO</SubTitle>
-        <Title>Our mission is to provide you with quality</Title>
-        <Description>
-          We are a multicultural and customer centric trip support company that is always
-          striving for excellence in the services we provide. Our testament that we will never
-          tire in serving our clients around the clock is our team's creed and is instilled in our
-          core values.
-        </Description>
-        <Description>
-          We are one of the few companies that can truly offer worldwide trip support
-          services with the highest service standards, is ISO certified and cost efficient, and
-          will effectively allow you to save valuable time and resources.
-        </Description>
-      </ContentContainer>
+      <ContentWrapper>
+        <LeftColumn>
+          <Title>Why Choose Us?</Title>
+          <Description>
+            Teyung's Tattoo Studio is a premier destination for those seeking exceptional artistry and a transformative tattoo experience. Our commitment to excellence and creativity sets us apart in the world of body art.
+          </Description>
+        </LeftColumn>
+        <RightColumn>
+          <FeatureItem>
+            <IconWrapper>
+              <Users size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Master Artists</FeatureTitle>
+              <FeatureDescription>Our team of expert tattoo artists brings years of experience and a passion for pushing creative boundaries.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+          <FeatureItem>
+            <IconWrapper>
+              <Globe size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Global Inspiration</FeatureTitle>
+              <FeatureDescription>We draw inspiration from diverse cultural traditions and contemporary art movements worldwide.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+          <FeatureItem>
+            <IconWrapper>
+              <Palette size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Custom Designs</FeatureTitle>
+              <FeatureDescription>Every tattoo is a unique piece of art, tailored to reflect your personal story and vision.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+          <FeatureItem>
+            <IconWrapper>
+              <Clock size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Timely Excellence</FeatureTitle>
+              <FeatureDescription>We respect your time, ensuring punctual sessions without compromising on quality or attention to detail.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+          <FeatureItem>
+            <IconWrapper>
+              <Shield size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Safety First</FeatureTitle>
+              <FeatureDescription>Our studio adheres to the highest standards of hygiene and safety, using only premium, sterilized equipment.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+          <FeatureItem>
+            <IconWrapper>
+              <PhoneCall size={24} color="#111" />
+            </IconWrapper>
+            <FeatureContent>
+              <FeatureTitle>Lifetime Support</FeatureTitle>
+              <FeatureDescription>We offer ongoing care advice and touch-up services to ensure your tattoo remains vibrant for years to come.</FeatureDescription>
+            </FeatureContent>
+          </FeatureItem>
+        </RightColumn>
+      </ContentWrapper>
     </SectionContainer>
   );
 };
 
-export default TattooStudioSection;
+export default WhyChooseUsSection;

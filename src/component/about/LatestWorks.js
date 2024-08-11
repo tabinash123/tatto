@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import tattooing from '../../assets/services/1.jpg';
 import piercing from '../../assets/services/2.jpg';
@@ -8,24 +8,43 @@ import tribal from '../../assets/services/4.jpg';
 import Modification from '../../assets/services/5.jpg';
 import design from '../../assets/services/6.jpg';
 
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
 const GallerySection = styled.section`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
+  background-color: #111;
 `;
 
 const Title = styled.h2`
   text-align: center;
   font-size: 36px;
-  color: #333;
-  margin-bottom: 20px;
+  color: #d4af37;
+  margin-bottom: 40px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  font-family: 'Cinzel Decorative', cursive;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  }
 `;
 
 const MasonryGrid = styled.div`
   column-count: 3;
-  column-gap: 3px;
+  column-gap: 20px;
   
   @media (max-width: 1024px) {
     column-count: 3;
@@ -36,19 +55,59 @@ const MasonryGrid = styled.div`
   }
   
   @media (max-width: 480px) {
-    column-count: 2;
+    column-count: 1;
   }
 `;
 
 const GalleryItem = styled.div`
   break-inside: avoid;
-  margin-bottom: 3px;
+  margin-bottom: 20px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
+  }
 `;
 
 const GalleryImage = styled.img`
   width: 100%;
   display: block;
+  transition: filter 0.3s ease;
+
+  ${GalleryItem}:hover & {
+    filter: brightness(0.7);
+  }
+`;
+
+const ImageOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+
+  ${GalleryItem}:hover & {
+    opacity: 1;
+  }
+`;
+
+const ImageTitle = styled.span`
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 `;
 
 const ModalOverlay = styled.div`
@@ -57,12 +116,13 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: ${fadeIn} 0.3s ease;
 `;
 
 const ModalContent = styled.div`
@@ -76,9 +136,11 @@ const ModalContent = styled.div`
 `;
 
 const ModalImage = styled.img`
-  max-width: 100%;
-  max-height: calc(100vh - 100px);
+  max-width: 90%;
+  max-height: calc(100vh - 160px);
   object-fit: contain;
+  border: 3px solid #d4af37;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
 `;
 
 const CloseButton = styled.button`
@@ -87,9 +149,14 @@ const CloseButton = styled.button`
   right: 20px;
   background: none;
   border: none;
-  font-size: 30px;
-  color: white;
+  font-size: 40px;
+  color: #d4af37;
   cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
 `;
 
 const ThumbnailGallery = styled.div`
@@ -106,7 +173,12 @@ const Thumbnail = styled.img`
   height: 60px;
   margin: 0 5px;
   cursor: pointer;
-  border: 2px solid ${props => props.selected ? 'white' : 'transparent'};
+  border: 2px solid ${props => props.selected ? '#d4af37' : 'transparent'};
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const LatestWorks = () => {
@@ -114,15 +186,15 @@ const LatestWorks = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const images = [
-    { src: tattooing, alt: "Tattooing" },
-    { src: piercing, alt: "Piercing" },
-    { src: consultation, alt: "Consultation" },
-    { src: tribal, alt: "Tribal tattoo" },
-    { src: Modification, alt: "Body modification" },
-    { src: design, alt: "Tattoo design" },
-    { src: design, alt: "Tattoo design" },
-    { src: design, alt: "Tattoo design" },
-    { src: design, alt: "Tattoo design" },
+    { src: tattooing, alt: "Intricate Arm Tattoo" },
+    { src: piercing, alt: "Delicate Ear Piercing" },
+    { src: consultation, alt: "Tattoo Design Consultation" },
+    { src: tribal, alt: "Bold Tribal Back Piece" },
+    { src: Modification, alt: "Unique Body Modification" },
+    { src: design, alt: "Custom Tattoo Design Sketch" },
+    { src: design, alt: "Colorful Sleeve Concept" },
+    { src: design, alt: "Minimalist Symbol Tattoo" },
+    { src: design, alt: "Traditional Japanese Style Art" },
   ];
 
   const openModal = (index) => {
@@ -148,11 +220,14 @@ const LatestWorks = () => {
 
   return (
     <GallerySection>
-      <Title>Latest Works</Title>
+      <Title>Inked Masterpieces</Title>
       <MasonryGrid>
         {images.map((image, index) => (
           <GalleryItem key={index} onClick={() => openModal(index)}>
             <GalleryImage src={image.src} alt={image.alt} />
+            <ImageOverlay>
+              <ImageTitle>{image.alt}</ImageTitle>
+            </ImageOverlay>
           </GalleryItem>
         ))}
       </MasonryGrid>

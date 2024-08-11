@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo.jpg';
+
+import '@fontsource/cinzel-decorative';
+import '@fontsource/fira-sans';
 
 const breakpoints = {
   mobile: '576px',
@@ -11,40 +15,81 @@ const breakpoints = {
 
 const NavbarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #000;
-  border-bottom: 2px solid #e53935;
+  padding: 20px 30px;
+  background-color: #111;
+  border-bottom: 3px solid #d4af37;
+  position: relative;
+  min-height: 140px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 10px 15px;
+    min-height: 80px;
+    justify-content: flex-start;
+  }
 `;
 
-const Logo = styled.div`
-  font-size: 28px;
-  font-weight: bold;
-  color: #e53935;
-  font-family: 'Brush Script MT', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+const LogoWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(45deg, #d4af37, #f2d472);
+  box-shadow: 
+    0 0 10px rgba(212, 175, 55, 0.5),
+    0 0 20px rgba(212, 175, 55, 0.3),
+    0 0 30px rgba(212, 175, 55, 0.1);
+
+  @media (max-width: ${breakpoints.mobile}) {
+    position: static;
+    transform: none;
+    margin: 0;
+    width: fit-content;
+  }
+`;
+
+const Logo = styled.img`
+  height: 120px;
+  width: auto;
+  border-radius: 50%;
+  display: block;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 60px; // Further reduced size for mobile
+  }
 `;
 
 const NavItems = styled.div`
   display: flex;
-  gap: 30px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
 
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
   }
 `;
 
+const NavGroup = styled.div`
+  display: flex;
+  gap: 40px;
+`;
+
 const NavItem = styled(Link)`
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700; // Increased font weight
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   position: relative;
-  font-family: 'Courier New', monospace;
+  font-family: 'Cinzel Decorative', cursive;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 
   &::after {
     content: '';
@@ -53,9 +98,14 @@ const NavItem = styled(Link)`
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #e53935;
+    background-color: #d4af37;
     transform: scaleX(0);
     transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
   }
 
   &:hover::after {
@@ -64,10 +114,11 @@ const NavItem = styled(Link)`
 `;
 
 const ContactInfo = styled.div`
-  color: #e53935;
-  font-size: 18px;
-  font-weight: 700; // Increased font weight
-  font-family: 'Courier New', monospace;
+  color: #d4af37;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Fira Sans', sans-serif;
+  text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
 
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
@@ -77,9 +128,18 @@ const ContactInfo = styled.div`
 const MenuIcon = styled.div`
   display: none;
   cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 
   @media (max-width: ${breakpoints.tablet}) {
     display: block;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 
@@ -87,12 +147,13 @@ const Drawer = styled.div`
   position: fixed;
   top: 0;
   right: ${props => props.open ? '0' : '-100%'};
-  width: 250px;
+  width: 300px;
   height: 100%;
-  background-color: #000;
+  background-color: #111;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
-  border-left: 2px solid #e53935;
+  border-left: 3px solid #d4af37;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
 `;
 
 const DrawerHeader = styled.div`
@@ -100,45 +161,47 @@ const DrawerHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 2px solid #e53935;
+  border-bottom: 2px solid #d4af37;
 `;
 
 const DrawerLogo = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  color: #e53935;
-  font-family: 'Brush Script MT', cursive;
+  img {
+    height: 60px;
+    width: auto;
+    border-radius: 50%;
+  }
 `;
 
 const DrawerCloseButton = styled.div`
   cursor: pointer;
-  color: #e53935;
+  color: #d4af37;
 `;
 
 const DrawerNavItems = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 30px;
 `;
 
 const DrawerNavItem = styled(Link)`
-  color: #fff;
-  font-size: 18px;
-  font-weight: 900; // Increased font weight
-  padding: 15px 0;
+  color: #d4af37;
+  font-size: 22px;
+  font-weight: 900;
+  padding: 20px 0;
   text-decoration: none;
   border-bottom: 1px solid #333;
-  font-family: 'Courier New', monospace;
+  font-family: 'Cinzel Decorative', cursive;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+  letter-spacing: 2px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 
   &:last-child {
     border-bottom: none;
   }
 
   &:hover {
-    color: #e53935;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
   }
 `;
 
@@ -151,31 +214,39 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <Logo>Ink Masters</Logo>
+      <LogoWrapper>
+        <Logo src={logo} alt="Teyung's Laser Removal, Tattoo & Piercing" />
+      </LogoWrapper>
       <NavItems>
-        <NavItem to="/">HOME</NavItem>
-        <NavItem to="/about">About Us</NavItem>
-        <NavItem to="/contact">CONTACT</NavItem>
-        <NavItem to="/gallary">Gallary</NavItem>
-        <NavItem to="/services">Services</NavItem>
+        <NavGroup>
+          <NavItem to="/">Home</NavItem>
+          <NavItem to="/about">About</NavItem>
+          <NavItem to="/services">Services</NavItem>
+        </NavGroup>
+        <NavGroup>
+          <NavItem to="/gallery">Gallery</NavItem>
+          <NavItem to="/contact">Contact</NavItem>
+          <ContactInfo>+1 (234) 56-789</ContactInfo>
+        </NavGroup>
       </NavItems>
-      <ContactInfo>+1 (234) 56-789</ContactInfo>
       <MenuIcon onClick={toggleDrawer}>
-        <Menu color="#e53935" size={24} />
+        <Menu color="#d4af37" size={32} />
       </MenuIcon>
       <Drawer open={isDrawerOpen}>
         <DrawerHeader>
-          <DrawerLogo>Ink Masters</DrawerLogo>
+          <DrawerLogo>
+            <img src={logo} alt="Teyung's Laser Removal, Tattoo & Piercing" />
+          </DrawerLogo>
           <DrawerCloseButton onClick={toggleDrawer}>
-            <X color="#e53935" size={24} />
+            <X color="#d4af37" size={32} />
           </DrawerCloseButton>
         </DrawerHeader>
         <DrawerNavItems>
           <DrawerNavItem to="/" onClick={toggleDrawer}>Home</DrawerNavItem>
-          <DrawerNavItem to="/about" onClick={toggleDrawer}>About US</DrawerNavItem>
-          <DrawerNavItem to="/contact" onClick={toggleDrawer}>Contact</DrawerNavItem>
-          <DrawerNavItem to="/gallary" onClick={toggleDrawer}>Gallary</DrawerNavItem>
+          <DrawerNavItem to="/about" onClick={toggleDrawer}>About</DrawerNavItem>
           <DrawerNavItem to="/services" onClick={toggleDrawer}>Services</DrawerNavItem>
+          <DrawerNavItem to="/gallery" onClick={toggleDrawer}>Gallery</DrawerNavItem>
+          <DrawerNavItem to="/contact" onClick={toggleDrawer}>Contact</DrawerNavItem>
         </DrawerNavItems>
       </Drawer>
     </NavbarContainer>

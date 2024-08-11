@@ -1,181 +1,268 @@
+import React from 'react';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import artist from '../../assets/pmporiqo.png'
+// Replace this with your tattoo-related video
+import tattooVideo from '../../assets/gallary/video-006f44010774049daa42fcf626764876-V.mp4';
+
+const breakpoints = {
+  mobile: '576px',
+  tablet: '768px',
+  desktop: '1024px',
+};
 
 const HeroSection = styled.section`
-  background-color: #000000;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
   position: relative;
-  background-image: url(${artist});
-  background-size: cover;
-  background-position: center;
-  height: 60vh; // Set to half of the viewport height for mobile
-
-  @media (min-width: 769px) {
-    background-image: none;
-    flex-direction: row;
-    padding: 3rem 4rem;
-    height: auto; // Reset height for larger screens
-  }
-
-  @media (min-width: 1025px) {
-    padding: 0rem 6rem;
-  }
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #111;
 `;
 
-const ContentArea = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-
-  @media (min-width: 769px) {
-    background-color: transparent;
-    padding: 0;
-  }
-`;
-
-const Logo = styled.h1`
-  font-size: 2rem;
-  margin: 0;
-  line-height: 1;
-  font-weight: bold;
-  
-  @media (min-width: 769px) {
-    font-size: 3rem;
-  }
-
-  @media (min-width: 1025px) {
-    font-size: 4rem;
-  }
-
-  span {
-    color: #ff3b3b;
-  }
-`;
-
-const Subheading = styled.h2`
-  font-size: 1.2rem;
-  margin: 0.5rem 0 1rem;
-  font-weight: normal;
-
-  @media (min-width: 769px) {
-    font-size: 1.75rem;
-  }
-
-  @media (min-width: 1025px) {
-    font-size: 2rem;
-  }
-`;
-
-const Tagline = styled.p`
-  color: #a0a0a0;
-  max-width: 100%;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-
-  @media (min-width: 769px) {
-    max-width: 80%;
-    font-size: 1rem;
-  }
-
-  @media (min-width: 1025px) {
-    max-width: 70%;
-    margin-bottom: 2rem;
-  }
-`;
-
-const CTAButton = styled.button`
-  background-color: #ff3b3b;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-
-  @media (min-width: 769px) {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  @media (min-width: 1025px) {
-    padding: 0.75rem 2rem;
-  }
-`;
-
-const ContactInfo = styled.div`
-  font-size: 0.7rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 0.5rem;
+const VideoBackground = styled.video`
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+`;
 
-  @media (min-width: 769px) {
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('path_to_your_tattoo_pattern.png');
+    opacity: 0.05;
+    z-index: 1;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 80px 10%;
+  color: #f5f5f5;
+  z-index: 2;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    padding: 60px 8%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 40px 6%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 30px 5%;
+  }
+`;
+
+const SubHeader = styled(motion.h2)`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #cccccc;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.6rem;
+    letter-spacing: 4px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+  }
+`;
+
+const Title = styled(motion.h1)`
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(212, 175, 55, 0.5);
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 4.5rem;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 3.5rem;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Description = styled(motion.p)`
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: #cccccc;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 1.2rem;
+    max-width: 550px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.1rem;
+    max-width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem;
+  }
+`;
+
+const CTAButton = styled(motion.a)`
+  display: inline-block;
+  background-color: #d4af37;
+  color: #000;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 30px;
+  border: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 0.9rem;
-    flex-direction: row;
-    gap: 2rem;
-    bottom: 2rem;
-    left: 4rem;
-    right: auto;
-    background-color: transparent;
-    padding: 0;
+    padding: 10px 20px;
   }
 
-  @media (min-width: 1025px) {
-    left: 6rem;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 0.8rem;
+    padding: 8px 18px;
+    letter-spacing: 1px;
   }
 `;
 
-const ImageArea = styled.div`
-  display: none;
+const ArtisticElement = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  background-image: url('path_to_your_tattoo_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: 2;
 
-  @media (min-width: 769px) {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    img {
-      max-width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-    }
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    right: 30px;
   }
 
-  @media (min-width: 1025px) {
-    img {
-      max-height: 500px;
-    }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    right: 20px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 60px;
+    height: 60px;
+    top: 15px;
+    right: 15px;
   }
 `;
 
-const Hero = () => (
-  <HeroSection>
-    <ContentArea>
-      <div>
-        <Logo><span>DARK</span> INK</Logo>
-        <Subheading>TATTOO SALON</Subheading>
-        <Tagline>Our tattooists use 100% safe technology to create stunning artworks. They use certified equipment, which guarantees the best possible results.</Tagline>
-        <CTAButton>READ MORE</CTAButton>
-      </div>
-    </ContentArea>
-    <ImageArea>
-      <img src={artist} alt="Tattoo artist" />
-    </ImageArea>
-    <ContactInfo>
-      <p>Free Call: (073) 123-12-12</p>
-      <p>Opening Hours: 10 am-8 pm, Mn-Fr</p>
-    </ContactInfo>
-  </HeroSection>
-);
+const TattooHeroComponent = () => {
+  return (
+    <HeroSection>
+      <VideoBackground autoPlay loop muted playsInline>
+        <source src={tattooVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
+      <Overlay />
+      <ArtisticElement />
+      <ContentWrapper>
+        <SubHeader
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          Crafting Timeless Art
+        </SubHeader>
+        <Title
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+        >
+          Ink Mastery Studio
+        </Title>
+        <Description
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+        >
+          Step into a realm where skin becomes canvas and dreams take form. Our master 
+          artists blend traditional techniques with cutting-edge designs, creating 
+          living masterpieces that tell your unique story.
+        </Description>
+        <CTAButton
+          href="#gallery"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4 }}
+        >
+          Explore Our Art
+        </CTAButton>
+      </ContentWrapper>
+    </HeroSection>
+  );
+};
 
-export default Hero;
+export default TattooHeroComponent;

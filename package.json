@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/caveat": "^5.0.18",
+    "@fontsource/cinzel-decorative": "^5.0.19",
+    "@fontsource/cormorant-garamond": "^5.0.13",
+    "@fontsource/fira-sans": "^5.0.20",
+    "@fontsource/julius-sans-one": "^5.0.20",
+    "@fontsource/permanent-marker": "^5.0.12",
+    "@fontsource/special-elite": "^5.0.12",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

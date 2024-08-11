@@ -5,31 +5,55 @@ import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 const ContactSection = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #000000;
-  color: white;
-  padding: 40px;
-  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #d4af37;
+  padding: 60px 40px;
+  font-family: 'Cinzel Decorative', cursive;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('path_to_your_tattoo_pattern.png');
+    opacity: 0.05;
+    z-index: 0;
+  }
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 40px 20px;
   }
 `;
 
+const ContentWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+
 const Title = styled.h1`
-  font-size: 36px;
-  // margin-bottom: 20px;
-  font-weight: normal;
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 480px) {
-    font-size: 28px;
+    font-size: 36px;
   }
 `;
 
 const Description = styled.p`
-  // margin-bottom: 40px;
-  color: #aaa;
-  font-size: 14px;
+  margin-bottom: 40px;
+  color: #cccccc;
+  font-size: 16px;
   max-width: 600px;
+  font-family: 'Fira Sans', sans-serif;
+  line-height: 1.6;
 `;
 
 const InfoSection = styled.div`
@@ -38,99 +62,110 @@ const InfoSection = styled.div`
   gap: 40px;
 `;
 
-const InfoBlock = styled.div``;
+const InfoBlock = styled.div`
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
 
 const InfoTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #d4af37;
 `;
 
 const InfoText = styled.p`
-  // margin-bottom: 20px;
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #aaa;
+  font-size: 16px;
+  color: #cccccc;
+  font-family: 'Fira Sans', sans-serif;
+  margin-bottom: 10px;
   
   &::before {
     content: '${props => props.icon}';
     margin-right: 10px;
-    color: #e74c3c;
+    font-size: 24px;
   }
 `;
 
 const SocialMediaSection = styled.div`
-  // margin-top: 40px;
+  margin-top: 60px;
 `;
 
 const SocialMediaLinks = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  justify-content: center;
 `;
 
 const SocialMediaLink = styled.a`
-  color: #aaa;
-  transition: color 0.3s ease;
-
+  color: #d4af37;
+  transition: all 0.3s ease;
+  
   &:hover {
-    color: #e74c3c;
+    color: #f2d472;
+    transform: scale(1.2);
   }
 `;
 
 const ContactUs = () => {
   return (
     <ContactSection>
-      <Title>CONTACT US</Title>
-      <Description>
-        You can contact us any way that is convenient for you. We are available 24/7 via phone or email.
-        You can also visit our salon personally during our opening hours.
-      </Description>
-      <InfoSection>
-        <InfoBlock>
-          <InfoTitle>Address</InfoTitle>
-          <InfoText icon="📍">
-            Washington, USA 6036 Richmond hwy., Alexandria, VA, 2230
-          </InfoText>
-        </InfoBlock>
-        <InfoBlock>
-          <InfoTitle>Phones</InfoTitle>
-          <InfoText icon="📞">
-            +1 (409) 987-5874, +1(409) 987-5884
-          </InfoText>
-        </InfoBlock>
-        <InfoBlock>
-          <InfoTitle>E-mail</InfoTitle>
-          <InfoText icon="✉️">
-            info@demolink.org
-          </InfoText>
-        </InfoBlock>
-        <InfoBlock>
-          <InfoTitle>Opening Hours</InfoTitle>
-          <InfoText icon="🕒">
-            Mon-Fri: 9 am – 6 pm<br />
-            Saturday: 9 am – 4 pm<br />
-            Sunday: Closed
-          </InfoText>
-        </InfoBlock>
-      </InfoSection>
-      <SocialMediaSection>
-        <InfoTitle>Follow Us</InfoTitle>
-        <SocialMediaLinks>
-          <SocialMediaLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <Facebook size={24} />
-          </SocialMediaLink>
-          <SocialMediaLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <Instagram size={24} />
-          </SocialMediaLink>
-          <SocialMediaLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <Twitter size={24} />
-          </SocialMediaLink>
-          <SocialMediaLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <Linkedin size={24} />
-          </SocialMediaLink>
-        </SocialMediaLinks>
-      </SocialMediaSection>
+      <ContentWrapper>
+        <Title>Connect With Us</Title>
+        <Description>
+          Step into our world of artistry. Whether you're seeking a new tattoo, considering removal, or just want to chat about design, we're here to bring your vision to life.
+        </Description>
+        <InfoSection>
+          <InfoBlock>
+            <InfoTitle>Our Studio</InfoTitle>
+            <InfoText icon="🎨">
+              6036 Richmond hwy., Alexandria, VA, 22303
+            </InfoText>
+          </InfoBlock>
+          <InfoBlock>
+            <InfoTitle>Reach Out</InfoTitle>
+            <InfoText icon="📞">
+              +1 (409) 987-5874
+            </InfoText>
+            <InfoText icon="✉️">
+              ink@teyungstattoo.com
+            </InfoText>
+          </InfoBlock>
+          <InfoBlock>
+            <InfoTitle>Studio Hours</InfoTitle>
+            <InfoText icon="🕒">
+              Mon-Fri: 11 am – 9 pm<br />
+              Sat-Sun: 12 pm – 10 pm
+            </InfoText>
+          </InfoBlock>
+        </InfoSection>
+        <SocialMediaSection>
+          <InfoTitle>Join Our Community</InfoTitle>
+          <SocialMediaLinks>
+            <SocialMediaLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <Facebook size={32} />
+            </SocialMediaLink>
+            <SocialMediaLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <Instagram size={32} />
+            </SocialMediaLink>
+            <SocialMediaLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <Twitter size={32} />
+            </SocialMediaLink>
+            <SocialMediaLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={32} />
+            </SocialMediaLink>
+          </SocialMediaLinks>
+        </SocialMediaSection>
+      </ContentWrapper>
     </ContactSection>
   );
 };
