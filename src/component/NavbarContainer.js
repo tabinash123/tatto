@@ -221,7 +221,6 @@ const Navbar = () => {
         <NavGroup>
           <NavItem to="/">Home</NavItem>
           <NavItem to="/about">About</NavItem>
-          <NavItem to="/services">Services</NavItem>
         </NavGroup>
         <NavGroup>
           <NavItem to="/gallery">Gallery</NavItem>
@@ -244,7 +243,6 @@ const Navbar = () => {
         <DrawerNavItems>
           <DrawerNavItem to="/" onClick={toggleDrawer}>Home</DrawerNavItem>
           <DrawerNavItem to="/about" onClick={toggleDrawer}>About</DrawerNavItem>
-          <DrawerNavItem to="/services" onClick={toggleDrawer}>Services</DrawerNavItem>
           <DrawerNavItem to="/gallery" onClick={toggleDrawer}>Gallery</DrawerNavItem>
           <DrawerNavItem to="/contact" onClick={toggleDrawer}>Contact</DrawerNavItem>
         </DrawerNavItems>
