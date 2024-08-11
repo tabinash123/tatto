@@ -12,7 +12,7 @@ const breakpoints = {
 
 const HeroSection = styled.section`
   position: relative;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   overflow: hidden;
   background-color: #111;
