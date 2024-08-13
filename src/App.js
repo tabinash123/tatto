@@ -7,7 +7,7 @@ import Homepage from './pages/Hompage';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Gallary from './pages/Gallary';
-import Services from './pages/Services';
+// import Services from './pages/Services';
 
 const App = () => {
   return (

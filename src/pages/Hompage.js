@@ -4,7 +4,7 @@ import AboutUs from '../component/hompage/AboutUs';
 import Services from '../component/hompage/Services';
 import OurStaff from '../component/hompage/OurStaff';
 import Gallery from '../component/hompage/Gallery';
-import PricingPlans from '../component/hompage/PricingPlans';
+// import PricingPlans from '../component/hompage/PricingPlans';
 import Map from '../component/hompage/Map';
 import UserTestimonials from '../component/hompage/UserTestimonials';
 
@@ -16,7 +16,7 @@ const Hompage = () => {
           <AboutUs />
           <Services />
           <OurStaff />
-      <PricingPlans />
+      {/* <PricingPlans /> */}
       <Gallery />
       <UserTestimonials />
       <Map />

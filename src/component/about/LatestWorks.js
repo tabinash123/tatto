@@ -14,7 +14,7 @@ const fadeIn = keyframes`
 `;
 
 const GallerySection = styled.section`
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   background-color: #111;

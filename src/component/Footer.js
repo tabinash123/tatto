@@ -188,39 +188,33 @@ const Footer = () => {
           <Title>Contact Us</Title>
           <ContactInfo>
             <ContactIcon><FaMapMarkerAlt /></ContactIcon>
-            665 Ink Avenue, New York, NY 10001
+            Peepal Bot, Chabahil,Kathmandu
           </ContactInfo>
           <ContactInfo>
             <ContactIcon><FaPhone /></ContactIcon>
-            +1 (855) 100-4444
+            9823024510
           </ContactInfo>
           <ContactInfo>
             <ContactIcon><FaEnvelope /></ContactIcon>
             <a href="mailto:ink@tattooart.com" style={{ color: 'inherit', textDecoration: 'none' }}>ink@tattooart.com</a>
           </ContactInfo>
           <SocialIcons>
-            <SocialIcon href="#" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
-            <SocialIcon href="#" target="_blank" rel="noopener noreferrer"><FaTwitter /></SocialIcon>
-            <SocialIcon href="#" target="_blank" rel="noopener noreferrer"><FaYoutube /></SocialIcon>
-            <SocialIcon href="#" target="_blank" rel="noopener noreferrer"><FaFacebookF /></SocialIcon>
-            <SocialIcon href="#" target="_blank" rel="noopener noreferrer"><FaPinterest /></SocialIcon>
+            <SocialIcon href="https://www.instagram.com/teyung_tattoo_removal?igsh=MWYzdmNkZDlzNDR2ZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
+            <SocialIcon href="https://www.facebook.com/profile.php?id=100045144070566&locale=np" target="_blank" rel="noopener noreferrer"><FaFacebookF /></SocialIcon>
           </SocialIcons>
         </Section>
         
         <Section>
           <Title>Studio Hours</Title>
-          <WorkTimeItem><Day>Monday - Friday</Day><Time>11:00 - 21:00</Time></WorkTimeItem>
-          <WorkTimeItem><Day>Saturday</Day><Time>12:00 - 22:00</Time></WorkTimeItem>
-          <WorkTimeItem><Day>Sunday</Day><Time closed>By Appointment Only</Time></WorkTimeItem>
+          <WorkTimeItem><Day>Sunday - Friday</Day><Time>10:00 Am - 05:00 Pm</Time></WorkTimeItem>
         </Section>
         
         <Section>
           <Title>Quick Links</Title>
-          <ContactInfo><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>About Us</a></ContactInfo>
-          <ContactInfo><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Our Artists</a></ContactInfo>
-          <ContactInfo><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Gallery</a></ContactInfo>
-          <ContactInfo><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Aftercare</a></ContactInfo>
-          <ContactInfo><a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>FAQ</a></ContactInfo>
+          <ContactInfo><a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a></ContactInfo>
+          <ContactInfo><a href="/about" style={{ color: 'inherit', textDecoration: 'none' }}>About Us</a></ContactInfo>
+          <ContactInfo><a href="/gallery" style={{ color: 'inherit', textDecoration: 'none' }}>Gallery</a></ContactInfo>
+          <ContactInfo><a href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a></ContactInfo>
         </Section>
         
         <Section>
@@ -233,7 +227,7 @@ const Footer = () => {
         </Section>
       </ContentWrapper>
       <Copyright>
-        © {new Date().getFullYear()} Ink Master Tattoo Studio. All rights reserved.
+        © 2020 Teyungs Tattoo Studio. All rights reserved.
       </Copyright>
     </FooterContainer>
   );

@@ -292,22 +292,22 @@ const StyledSlider = styled(Slider)`
 const UserTestimonials = () => {
   const testimonials = [
     { 
-      name: 'John Doe', 
+      name: 'Aarati Sharma', 
       title: 'Satisfied Customer', 
       image: staff1,
-      content: 'Absolutely love my new tattoo! The artists here are true professionals and made the whole experience enjoyable.'
+      content: 'Teyungs Tattoo Studio truly impressed me. Owner name is artistry perfectly captured the blend of modern design and Nepali culture I was looking for.'
     },
     { 
-      name: 'Jane Smith', 
+      name: 'Bikash Thapa', 
       title: 'Repeat Client', 
       image: staff2,
-      content: 'I ve been coming here for years and every tattoo is a masterpiece. The attention to detail is unmatched.'
+      content: 'I hve been getting inked at Teyungs Tattoo Studio for years. Their consistent quality and innovative designs keep me coming back. Best in Kathmandu!'
     },
     { 
-      name: 'Mike Johnson', 
-      title: 'First-Time Client', 
+      name: 'Emily Thompson', 
+      title: 'International Client', 
       image: staff3,
-      content: 'As a first-timer, I was nervous, but the staff made me feel comfortable throughout the entire process. Highly recommend!'
+      content: 'As a traveler, I wanted a unique souvenir from Nepal. Teyungs Tattoo Studio delivered with a beautiful design that tells a story. Highly recommend!'
     },
   ];
 
@@ -341,13 +341,13 @@ const UserTestimonials = () => {
     <TestimonialSection>
       <ContentWrapper>
         <SectionHeader>
-          <Title>Inked Stories</Title>
+          <Title> Costumer Review</Title>
         </SectionHeader>
         <StyledSlider {...settings}>
           {testimonials.map((testimonial, index) => (
             <TestimonialItem key={index}>
               <TestimonialImageWrapper>
-                <TestimonialImage src={testimonial.image} alt={testimonial.name} />
+                {/* <TestimonialImage src={testimonial.image} alt={testimonial.name} /> */}
               </TestimonialImageWrapper>
               <QuoteMark>"</QuoteMark>
               <TestimonialContent>{testimonial.content}</TestimonialContent>

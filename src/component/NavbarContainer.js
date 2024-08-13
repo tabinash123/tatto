@@ -225,7 +225,7 @@ const Navbar = () => {
         <NavGroup>
           <NavItem to="/gallery">Gallery</NavItem>
           <NavItem to="/contact">Contact</NavItem>
-          <ContactInfo>+1 (234) 56-789</ContactInfo>
+          <ContactInfo>9823024510</ContactInfo>
         </NavGroup>
       </NavItems>
       <MenuIcon onClick={toggleDrawer}>

@@ -52,9 +52,7 @@ const MapComponent = () => {
   const [zoomLevel, setZoomLevel] = useState(15); // Default zoom level
 
   // Update the map URL with the zoom level and the coordinates for Cahabahil, Kathmandu
-  const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.3540152561465!2d85.3087!3d27.7061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18e3abf5e40f%3A0x64f6b54f3c9d6d7f!2sCahabahil%2C%20Kathmandu%2C%20Nepal!5e0!3m2!1sen!2s!4v1628137205123!5m2!1sen!2s&zoom=${zoomLevel}`;
-
-  const handleZoomIn = () => {
+const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0466859857897!2d85.34426097617189!3d27.715877082784078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQyJzU3LjIiTiA4NcKwMjAnNDcuMiJF!5e0!3m2!1sen!2s!4v1628137205123!5m2!1sen!2s&zoom=${zoomLevel}`;  const handleZoomIn = () => {
     setZoomLevel(prevZoom => prevZoom + 1);
   };
 

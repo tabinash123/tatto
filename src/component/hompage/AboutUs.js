@@ -17,7 +17,7 @@ const slideIn = keyframes`
 `;
 
 const AboutSection = styled.section`
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   background-color: #111;
@@ -266,30 +266,30 @@ const AboutUs = () => (
     <Grid>
       <ContentArea>
         <Title>The Art of Ink</Title>
-        <Subtitle>Where passion meets precision</Subtitle>
+        <Subtitle>Crafting Timeless Art Since 2013</Subtitle>
         <Description>
-          In our studio, each tattoo is a unique masterpiece, born from the synergy of your vision and our artistic expertise. We don't just ink skin; we create lasting impressions that tell your story.
+          Founded by passionate artist Name of the owner, Teyungs Tattoo Studio has become one of Kathmandu's premier tattoo studios, offering expertise in diverse tattoo styles and piercings.
         </Description>
         <Description>
-          Our team of skilled artists brings years of experience and a deep passion for the craft, ensuring that every line, shade, and color is perfected to your satisfaction.
+          Our team of skilled artists excels in both modern and traditional designs, constantly evolving our techniques to create true masterpieces on skin.
         </Description>
         <StatsGrid>
           <StatItem>
-            <StatNumber>15+</StatNumber>
-            <StatLabel>Years of Excellence</StatLabel>
+            <StatNumber>10+</StatNumber>
+            <StatLabel>Years of Artistry</StatLabel>
           </StatItem>
           <StatItem>
-            <StatNumber>10k+</StatNumber>
-            <StatLabel>Designs Created</StatLabel>
+            <StatNumber>100+</StatNumber>
+            <StatLabel>Unique Designs</StatLabel>
           </StatItem>
           <StatItem>
-            <StatNumber>98%</StatNumber>
-            <StatLabel>Client Satisfaction</StatLabel>
+            <StatNumber>#1</StatNumber>
+            <StatLabel>in Kathmandu</StatLabel>
           </StatItem>
         </StatsGrid>
       </ContentArea>
       <ImageWrapper>
-        <Image src={artist} alt="Tattoo artist at work" />
+        <Image src={artist} alt="Teyungs Tattoo Studio" />
       </ImageWrapper>
     </Grid>
   </AboutSection>

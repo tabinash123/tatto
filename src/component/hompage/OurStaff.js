@@ -1,12 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import staff1 from '../../assets/services/1.jpg';
-import staff2 from '../../assets/services/2.jpg';
-import staff3 from '../../assets/services/5.jpg';
-
+import staff1 from '../../assets/services/tattooing.jpg';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -17,10 +11,11 @@ const slideIn = keyframes`
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 `;
+
 const StaffSection = styled.section`
   background-color: #111;
   color: #d4af37;
-  padding: 90px 80px;
+  // padding: 90px 80px;
   position: relative;
   overflow: hidden;
 
@@ -46,45 +41,34 @@ const ContentWrapper = styled.div`
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-`;
-
-const SectionHeader = styled.div`
   display: flex;
-  // justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 60px;
 `;
 
 const Title = styled.h2`
   font-family: 'Cinzel Decorative', cursive;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #d4af37;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   position: relative;
   padding-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-align: center;
 
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80px;
     height: 2px;
-    background: linear-gradient(to right, #d4af37, transparent);
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
   }
 
   animation: ${fadeIn} 1s ease-out;
-
-  @media (min-width: 768px) {
-    font-size: 2.25rem;
-    margin-bottom: 20px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const StaffMember = styled.div`
@@ -94,6 +78,8 @@ const StaffMember = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 400px;
+  width: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -103,7 +89,7 @@ const StaffMember = styled.div`
 
 const StaffImageWrapper = styled.div`
   width: 100%;
-  height: 350px;
+  height: 400px;
   overflow: hidden;
   margin-bottom: 20px;
   position: relative;
@@ -119,18 +105,6 @@ const StaffImageWrapper = styled.div`
     bottom: 0;
     background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
     z-index: 1;
-  }
-
-  @media (max-width: 1024px) {
-    height: 300px;
-  }
-
-  @media (max-width: 768px) {
-    height: 250px;
-  }
-
-  @media (max-width: 480px) {
-    height: 200px;
   }
 `;
 
@@ -173,106 +147,20 @@ const StaffTitle = styled.p`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 `;
 
-const StyledSlider = styled(Slider)`
-  .slick-slide > div {
-    margin: 0 15px;
-  }
-  .slick-list {
-    margin: 0 -15px;
-  }
-  
-  .slick-dots {
-    bottom: -40px;
-    
-    li button:before {
-      font-size: 12px;
-      color: #d4af37;
-      opacity: 0.25;
-    }
-    
-    li.slick-active button:before {
-      opacity: 1;
-    }
-  }
-
-  .slick-prev, .slick-next {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(212, 175, 55, 0.2);
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: rgba(212, 175, 55, 0.4);
-    }
-
-    &:before {
-      color: #d4af37;
-      font-size: 24px;
-    }
-  }
-
-  .slick-prev {
-    left: -50px;
-  }
-
-  .slick-next {
-    right: -50px;
-  }
-`;
-
 const OurStaff = () => {
-  const staffMembers = [
-    { name: 'Charles Wade', title: 'Tattoo Master, Founder', image: staff1 },
-    { name: 'Henry Richard', title: 'Tattoo Master', image: staff2 },
-    { name: 'Walter Evans', title: 'Junior Tattoo Master', image: staff3 },
-  ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
   return (
     <StaffSection>
       <ContentWrapper>
-        <SectionHeader>
-          <Title>Tatto Artist</Title>
-        </SectionHeader>
-        <StyledSlider {...settings}>
-          {staffMembers.map((member, index) => (
-            <StaffMember key={index}>
-              <StaffImageWrapper>
-                <StaffImage src={member.image} alt={member.name} />
-                <StaffInfo>
-                  <StaffName>{member.name}</StaffName>
-                  <StaffTitle>{member.title}</StaffTitle>
-                </StaffInfo>
-              </StaffImageWrapper>
-            </StaffMember>
-          ))}
-        </StyledSlider>
+        <Title>Our Tattoo Artist</Title>
+        <StaffMember>
+          <StaffImageWrapper>
+            <StaffImage src={staff1} alt="Sandip Lama" />
+            <StaffInfo>
+              <StaffName>Owner name</StaffName>
+              <StaffTitle>Founder & Master Tattoo Artist</StaffTitle>
+            </StaffInfo>
+          </StaffImageWrapper>
+        </StaffMember>
       </ContentWrapper>
     </StaffSection>
   );

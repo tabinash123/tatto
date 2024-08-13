@@ -3,10 +3,11 @@ import styled, { keyframes } from 'styled-components';
 import tattooing from '../../assets/services/tattooing.jpg';
 import piercing from '../../assets/services/piercing.jpg';
 import Modification from '../../assets/services/modification.jpg';
-import design from '../../assets/services/6.jpg';
+import design from '../../assets/services/design.jpg';
 import consultation from '../../assets/services/consultation.jpg';
-import tribal from '../../assets/services/tribal.jpg';
-import hennaTattooImage from '../../assets/services/hennaTattooImage.jpg';
+import tattoTraining from '../../assets/services/8.jpg';
+import temporary from '../../assets/services/hennaTattooImage.jpg';
+import removal from '../../assets/services/removal.jpg';
 
 // Import custom fonts
 import '@fontsource/cinzel-decorative';
@@ -204,8 +205,9 @@ const services = [
   { name: 'Modifications', image: Modification },
   { name: 'Tattoo Design', image: design },
   { name: 'Consultation', image: consultation },
-  { name: 'Tribal Tattoo', image: tribal },
-  { name: 'Temporary', image: hennaTattooImage },
+  { name: 'Tatto Training', image: tattoTraining },
+  { name: 'Temporary', image: temporary },
+  { name: 'Laser Removal', image: removal },
 ];
 
 const TattooServices = () => {

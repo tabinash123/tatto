@@ -122,47 +122,46 @@ const ContactUs = () => {
       <ContentWrapper>
         <Title>Connect With Us</Title>
         <Description>
-          Step into our world of artistry. Whether you're seeking a new tattoo, considering removal, or just want to chat about design, we're here to bring your vision to life.
+          Step into our world of artistry at Teyungs Tattoo Studio. Whether you're seeking a new tattoo, considering removal, or just want to chat about design, we're here to bring your vision to life in the heart of Kathmandu.
         </Description>
         <InfoSection>
           <InfoBlock>
             <InfoTitle>Our Studio</InfoTitle>
-            <InfoText icon="🎨">
-              6036 Richmond hwy., Alexandria, VA, 22303
+            <InfoText >
+              Chabahil, Kathmandu, Nepal
             </InfoText>
           </InfoBlock>
           <InfoBlock>
             <InfoTitle>Reach Out</InfoTitle>
             <InfoText icon="📞">
-              +1 (409) 987-5874
+              +977-9823024510
             </InfoText>
             <InfoText icon="✉️">
-              ink@teyungstattoo.com
+              info@teyungstattoo.com
             </InfoText>
           </InfoBlock>
           <InfoBlock>
             <InfoTitle>Studio Hours</InfoTitle>
             <InfoText icon="🕒">
-              Mon-Fri: 11 am – 9 pm<br />
-              Sat-Sun: 12 pm – 10 pm
+              Sun-Fri: 10:00 am – 5:00 pm<br />
+              Sat:Closed<br />
             </InfoText>
           </InfoBlock>
         </InfoSection>
         <SocialMediaSection>
           <InfoTitle>Join Our Community</InfoTitle>
           <SocialMediaLinks>
-            <SocialMediaLink href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <SocialMediaLink href="https://www.facebook.com/profile.php?id=100045144070566" target="_blank" rel="noopener noreferrer">
               <Facebook size={32} />
             </SocialMediaLink>
-            <SocialMediaLink href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <SocialMediaLink 
+              href="https://www.instagram.com/teyung_tattoo_removal?igsh=MWYzdmNkZDlzNDR2ZQ%3D%3D&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <Instagram size={32} />
             </SocialMediaLink>
-            <SocialMediaLink href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <Twitter size={32} />
-            </SocialMediaLink>
-            <SocialMediaLink href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Linkedin size={32} />
-            </SocialMediaLink>
+          
           </SocialMediaLinks>
         </SocialMediaSection>
       </ContentWrapper>

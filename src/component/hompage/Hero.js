@@ -234,23 +234,23 @@ const TattooHeroComponent = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          Crafting Timeless Art
+          Turn your ideas into living art
         </SubHeader>
         <Title
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          Ink Mastery Studio
+          Teyungs Tattoo Studio
         </Title>
         <Description
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
         >
-          Step into a realm where skin becomes canvas and dreams take form. Our master 
-          artists blend traditional techniques with cutting-edge designs, creating 
-          living masterpieces that tell your unique story.
+          From traditional Nepali designs to modern 
+          masterpieces, we bring your vision to life. Experience top-notch tattooing 
+          in the heart of Kathmandu.
         </Description>
         <CTAButton
           href="#gallery"

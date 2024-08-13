@@ -185,33 +185,37 @@ const InfoText = styled.p`
     color: #d4af37;
   }
 `;
-
 const WhoWeAre = () => {
   return (
     <WhoWeAreSection>
       <ImageContainer>
-        <Image src={image} alt="Tattoo artist's work" />
+        <Image src={image} alt="Teyungs Tattoo Studio" />
       </ImageContainer>
       <ContentContainer>
         <Title>WHO WE ARE</Title>
         <Description>
-          We are master artisans of ink, dedicated to transforming your vision into timeless body art. Our studio is a sanctuary where creativity flourishes and personal expression takes form.
+          Established in 2013, Teyungs Tattoo Studio has become Kathmandu's premier destination for exceptional tattoos and piercings. Our journey began with Owner name, an artist with a deep passion for tattoos, who decided to turn his artistic vision into a thriving studio.
         </Description>
         <Description>
-          With years of expertise and an unwavering commitment to excellence, we push the boundaries of tattoo artistry while upholding the highest standards of safety and professionalism.
+          At Teyungs, we pride ourselves on being more than just a tattoo parlor. We are a diverse collective of skilled artists, each bringing their unique expertise in both modern and traditional tattooing techniques. From intricate Nepali-inspired designs to cutting-edge modern art, we craft living masterpieces that tell your unique story.
+        </Description>
+        <Description>
+          Our commitment to excellence goes beyond artistry. We maintain the highest standards of hygiene and use top-quality equipment to ensure your safety and comfort. Whether you're a first-time client or a tattoo enthusiast, our team is dedicated to providing a welcoming, professional experience.
+        </Description>
+        <Description>
+          Over the years, we've grown to become one of the best tattoo studios in Kathmandu, thanks to our unwavering dedication to quality, creativity, and customer satisfaction. We continuously evolve our styles and techniques, pushing the boundaries of tattoo art while honoring both modern trends and rich Nepali cultural heritage.
         </Description>
         <InfoContainer>
           <InfoColumn>
             <InfoTitle icon="🕒">Studio Hours</InfoTitle>
-            <InfoText>Monday-Friday: 10:00am-8:00pm</InfoText>
-            <InfoText>Saturday: 11:00am-6:00pm</InfoText>
-            <InfoText>Sunday: By Appointment Only</InfoText>
+            <InfoText>Sunday-Friday: 10:00am-5:00pm</InfoText>
+            <InfoText>Saturday: Closed</InfoText>
           </InfoColumn>
           <InfoColumn>
             <InfoTitle icon="📍">Find Us</InfoTitle>
-            <InfoText>123 Ink Street, Artville</InfoText>
-            <InfoText>Tattoo County, TC 12345</InfoText>
-            <InfoText>Phone: (555) 123-4567</InfoText>
+            <InfoText>Teyungs Tattoo Studio</InfoText>
+            <InfoText>Peepal Bot,Chabahil, Kathmandu, Nepal</InfoText>
+            <InfoText>Phone: +977-9823024510</InfoText>
           </InfoColumn>
         </InfoContainer>
       </ContentContainer>
