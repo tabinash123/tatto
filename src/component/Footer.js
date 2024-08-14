@@ -196,7 +196,7 @@ const Footer = () => {
           </ContactInfo>
           <ContactInfo>
             <ContactIcon><FaEnvelope /></ContactIcon>
-            <a href="mailto:ink@tattooart.com" style={{ color: 'inherit', textDecoration: 'none' }}>ink@tattooart.com</a>
+            <a href="mailto:teyungstattoink@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>teyungstattoink@gmail.com</a>
           </ContactInfo>
           <SocialIcons>
             <SocialIcon href="https://www.instagram.com/teyung_tattoo_removal?igsh=MWYzdmNkZDlzNDR2ZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
@@ -206,7 +206,8 @@ const Footer = () => {
         
         <Section>
           <Title>Studio Hours</Title>
-          <WorkTimeItem><Day>Sunday - Friday</Day><Time>10:00 Am - 05:00 Pm</Time></WorkTimeItem>
+          <WorkTimeItem><Day>Sunday - Saturday</Day><Time>10:00 Am - 05:00 Pm</Time></WorkTimeItem>
+          {/* <WorkTimeItem><Day>Saturday</Day><Time>1:00 Am - 05:00 Pm</Time></WorkTimeItem> */}
         </Section>
         
         <Section>

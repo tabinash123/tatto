@@ -156,7 +156,7 @@ const OurStaff = () => {
           <StaffImageWrapper>
             <StaffImage src={staff1} alt="Sandip Lama" />
             <StaffInfo>
-              <StaffName>Owner name</StaffName>
+              <StaffName>Kamal Sing Limbu</StaffName>
               <StaffTitle>Founder & Master Tattoo Artist</StaffTitle>
             </StaffInfo>
           </StaffImageWrapper>

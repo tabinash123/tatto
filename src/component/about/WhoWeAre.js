@@ -194,7 +194,7 @@ const WhoWeAre = () => {
       <ContentContainer>
         <Title>WHO WE ARE</Title>
         <Description>
-          Established in 2013, Teyungs Tattoo Studio has become Kathmandu's premier destination for exceptional tattoos and piercings. Our journey began with Owner name, an artist with a deep passion for tattoos, who decided to turn his artistic vision into a thriving studio.
+          Established in 2018, Teyungs Tattoo Ink  has become Kathmandu's premier destination for exceptional tattoos and piercings. Our journey began with Kamal Sing Limbu, an artist with a deep passion for tattoos, who decided to turn his artistic vision into a thriving studio.
         </Description>
         <Description>
           At Teyungs, we pride ourselves on being more than just a tattoo parlor. We are a diverse collective of skilled artists, each bringing their unique expertise in both modern and traditional tattooing techniques. From intricate Nepali-inspired designs to cutting-edge modern art, we craft living masterpieces that tell your unique story.
@@ -208,8 +208,7 @@ const WhoWeAre = () => {
         <InfoContainer>
           <InfoColumn>
             <InfoTitle icon="🕒">Studio Hours</InfoTitle>
-            <InfoText>Sunday-Friday: 10:00am-5:00pm</InfoText>
-            <InfoText>Saturday: Closed</InfoText>
+            <InfoText>Sunday-Saturday: 10:00am-5:00pm</InfoText>
           </InfoColumn>
           <InfoColumn>
             <InfoTitle icon="📍">Find Us</InfoTitle>

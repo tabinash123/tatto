@@ -266,16 +266,16 @@ const AboutUs = () => (
     <Grid>
       <ContentArea>
         <Title>The Art of Ink</Title>
-        <Subtitle>Crafting Timeless Art Since 2013</Subtitle>
+        <Subtitle>Crafting Timeless Art Since 2018</Subtitle>
         <Description>
-          Founded by passionate artist Name of the owner, Teyungs Tattoo Studio has become one of Kathmandu's premier tattoo studios, offering expertise in diverse tattoo styles and piercings.
+          Founded by passionate artist Name of the Kamal Sing Limbu, Teyungs Tattoo Studio has become one of Kathmandu's premier tattoo studios, offering expertise in diverse tattoo styles and piercings.
         </Description>
         <Description>
           Our team of skilled artists excels in both modern and traditional designs, constantly evolving our techniques to create true masterpieces on skin.
         </Description>
         <StatsGrid>
           <StatItem>
-            <StatNumber>10+</StatNumber>
+            <StatNumber>7+</StatNumber>
             <StatLabel>Years of Artistry</StatLabel>
           </StatItem>
           <StatItem>

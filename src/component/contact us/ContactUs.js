@@ -122,7 +122,7 @@ const ContactUs = () => {
       <ContentWrapper>
         <Title>Connect With Us</Title>
         <Description>
-          Step into our world of artistry at Teyungs Tattoo Studio. Whether you're seeking a new tattoo, considering removal, or just want to chat about design, we're here to bring your vision to life in the heart of Kathmandu.
+          Step into our world of artistry at Teyungs Tattoo Ink. Whether you're seeking a new tattoo, considering removal, or just want to chat about design, we're here to bring your vision to life in the heart of Kathmandu.
         </Description>
         <InfoSection>
           <InfoBlock>
@@ -137,7 +137,7 @@ const ContactUs = () => {
               +977-9823024510
             </InfoText>
             <InfoText icon="✉️">
-              info@teyungstattoo.com
+              teyungstattoink@gmail.com
             </InfoText>
           </InfoBlock>
           <InfoBlock>
