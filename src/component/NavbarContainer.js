@@ -214,9 +214,11 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
+      <NavItem to="/">
       <LogoWrapper>
         <Logo src={logo} alt="Teyung's Laser Removal, Tattoo & Piercing" />
-      </LogoWrapper>
+        </LogoWrapper>
+        </NavItem>
       <NavItems>
         <NavGroup>
           <NavItem to="/">Home</NavItem>

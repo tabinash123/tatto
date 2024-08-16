@@ -197,9 +197,6 @@ const LatestWorks = () => {
     { src: img2, alt: "Delicate Ear Piercing" },
     { src: img3, alt: "Tattoo Design Consultation" },
     { src: img4, alt: "Bold Tribal Back Piece" },
-    { src: img5, alt: "Unique Body Modification" },
-    { src: img6, alt: "Custom Tattoo Design Sketch" },
-    { src: img7, alt: "Colorful Sleeve Concept" },
 
   ];
 
@@ -232,7 +229,6 @@ const LatestWorks = () => {
           <GalleryItem key={index} onClick={() => openModal(index)}>
             <GalleryImage src={image.src} alt={image.alt} />
             <ImageOverlay>
-              <ImageTitle>{image.alt}</ImageTitle>
             </ImageOverlay>
           </GalleryItem>
         ))}
