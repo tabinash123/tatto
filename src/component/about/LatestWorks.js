@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import img1 from '../../assets/gallary/1723366699267.jpg';
+import img2 from '../../assets/gallary/1723366699280.jpg';
+import img3 from '../../assets/gallary/1723366699291.jpg';
+import img4 from '../../assets/gallary/1723366699308.jpg';
+import img5 from '../../assets/gallary/1723366699322.jpg';
+import img6 from '../../assets/gallary/1723366699350.jpg';
+import img7 from '../../assets/gallary/1723366699363.jpg';
 
-import tattooing from '../../assets/services/1.jpg';
-import piercing from '../../assets/services/2.jpg';
-import consultation from '../../assets/services/3.jpg';
-import tribal from '../../assets/services/4.jpg';
-import Modification from '../../assets/services/5.jpg';
-import design from '../../assets/services/6.jpg';
+// import tattooing from '../../assets/services/1.jpg';
+// import piercing from '../../assets/services/2.jpg';
+// import consultation from '../../assets/services/3.jpg';
+// import tribal from '../../assets/services/4.jpg';
+// import Modification from '../../assets/services/5.jpg';
+// import design from '../../assets/services/6.jpg';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -186,15 +193,14 @@ const LatestWorks = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const images = [
-    { src: tattooing, alt: "Intricate Arm Tattoo" },
-    { src: piercing, alt: "Delicate Ear Piercing" },
-    { src: consultation, alt: "Tattoo Design Consultation" },
-    { src: tribal, alt: "Bold Tribal Back Piece" },
-    { src: Modification, alt: "Unique Body Modification" },
-    { src: design, alt: "Custom Tattoo Design Sketch" },
-    { src: design, alt: "Colorful Sleeve Concept" },
-    { src: design, alt: "Minimalist Symbol Tattoo" },
-    { src: design, alt: "Traditional Japanese Style Art" },
+    { src: img1, alt: "Intricate Arm Tattoo" },
+    { src: img2, alt: "Delicate Ear Piercing" },
+    { src: img3, alt: "Tattoo Design Consultation" },
+    { src: img4, alt: "Bold Tribal Back Piece" },
+    { src: img5, alt: "Unique Body Modification" },
+    { src: img6, alt: "Custom Tattoo Design Sketch" },
+    { src: img7, alt: "Colorful Sleeve Concept" },
+
   ];
 
   const openModal = (index) => {
