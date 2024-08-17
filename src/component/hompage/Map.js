@@ -1,111 +1,80 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Truck, Lock, Headphones, DollarSign, ThumbsUp } from 'lucide-react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+const MapContainer = styled.div`
+  background-color: #000000;
+  width: 100%;
+  height: 300px;
+  position: relative;
 `;
 
-const FeatureBarContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 1.5rem;
-  background-color: #f8f8f8;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-  @media (max-width: 1024px) {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
+const MapWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
-const FeatureItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  animation: ${fadeIn} 0.5s ease forwards;
-  animation-delay: ${props => props.index * 0.1}s;
-  opacity: 0;
-
-  &:hover {
-    background-color: #e8e8e8;
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 1024px) {
-    flex: 1 1 calc(50% - 1rem);
-    justify-content: center;
-  }
-
-  @media (max-width: 640px) {
-    flex: 1 1 100%;
-  }
+const StyledIframe = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+border: 0;
 `;
-
-const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: #e0e0e0;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-
-  ${FeatureItem}:hover & {
-    background-color: #d0d0d0;
-  }
-`;
-
-const TextWrapper = styled.div`
+const ZoomControls = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
   display: flex;
   flex-direction: column;
+  `;
+  const ZoomButton = styled.button`
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  cursor: pointer;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+   &:first-child {
+    border-bottom: none;
+
+  }
 `;
 
-const Title = styled.span`
-  font-weight: bold;
-  font-size: 1rem;
-  color: #333;
-`;
+const MapComponent = () => {
+  const [zoomLevel, setZoomLevel] = useState(15); // Default zoom level
 
-const Description = styled.span`
-  font-size: 0.9rem;
-  color: #666;
-`;
 
-const features = [
-  { icon: Truck, title: 'Free Shipping', description: 'Free shipping on all orders' },
-  { icon: Lock, title: 'Payment Secure', description: '100% secure payment' },
-  { icon: Headphones, title: 'Support 24/7', description: 'Dedicated support' },
-  { icon: DollarSign, title: '100% Money Back', description: 'Satisfaction guaranteed' },
-  { icon: ThumbsUp, title: 'Quality Products', description: 'High-quality assurance' },
-];
-
-const FeatureBar = ({ customFeatures }) => {
-  const featuresToRender = customFeatures || features;
-
+  // Update the map URL with the zoom level and the coordinates for Cahabahil, Kathmandu
+const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0466859857897!2d85.34426097617189!3d27.715877082784078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQyJzU3LjIiTiA4NcKwMjAnNDcuMiJF!5e0!3m2!1sen!2s!4v1628137205123!5m2!1sen!2s&zoom=${zoomLevel}`;  const handleZoomIn = () => {
+    setZoomLevel(prevZoom => prevZoom + 1);
+  };
+  
+  const handleZoomOut = () => {
+    setZoomLevel(prevZoom => Math.max(prevZoom - 1, 0)); // Ensure zoom level doesn't go below 0
+  };
+  
   return (
-    <FeatureBarContainer>
-      {featuresToRender.map((feature, index) => (
-        <FeatureItem key={index} index={index}>
-          <IconWrapper>
-            <feature.icon size={24} color="#4a4a4a" />
-          </IconWrapper>
-          <TextWrapper>
-            <Title>{feature.title}</Title>
-            <Description>{feature.description}</Description>
-          </TextWrapper>
-        </FeatureItem>
-      ))}
-    </FeatureBarContainer>
-  );
+    <MapContainer>
+      <MapWrapper>
+        <StyledIframe 
+          src={mapUrl} 
+          allowFullScreen="" 
+          loading="lazy"
+          title="Google Map"
+        />
+      </MapWrapper>
+      <ZoomControls>
+        <ZoomButton onClick={handleZoomIn}>+</ZoomButton>
+        <ZoomButton onClick={handleZoomOut}>−</ZoomButton>
+      </ZoomControls>
+    </MapContainer>
+    );
 };
 
-export default FeatureBar;
+export default MapComponent;
