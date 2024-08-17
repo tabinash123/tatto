@@ -12,13 +12,13 @@ const Hompage = () => {
   return (
       <div>
           <Hero />
+      <Map />
           <AboutUs />
           <Services />
           <OurStaff />
       <Video />
       <Gallery />
       <UserTestimonials />
-      <Map />
     </div>
   )
 }

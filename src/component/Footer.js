@@ -1,234 +1,305 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaInstagram, FaTwitter, FaYoutube, FaFacebookF, FaPinterest, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { Phone, MapPin, Mail } from 'lucide-react';
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
 
 const FooterContainer = styled.footer`
-  background-color: #111;
-  color: #d4af37;
-  padding: 60px 20px 40px;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Fira Sans', sans-serif;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #d4af37, #f2d472, #d4af37);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('path_to_your_tattoo_pattern.png');
-    opacity: 0.05;
-    z-index: 0;
-  }
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 3rem 0 1rem;
+  animation: ${fadeIn} 0.5s ease-in;
 `;
 
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 
-  @media (min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
-const Section = styled.div`
+const Column = styled.div`
   flex: 1;
-  margin-bottom: 40px;
-  min-width: 250px;
+  min-width: 200px;
+`;
 
-  @media (min-width: 768px) {
-    flex: 0 0 50%;
-    padding-right: 40px;
+const Logo = styled.div`
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
   }
 
-  @media (min-width: 1024px) {
-    flex: 1;
+  img {
+    height: 40px;
   }
 `;
 
-const Title = styled.h3`
-  font-size: 22px;
-  margin-bottom: 25px;
-  font-family: 'Cinzel Decorative', cursive;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #f2d472;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  padding-bottom: 10px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background-color: #d4af37;
-  }
+const CompanyInfo = styled.p`
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  line-height: 1.6;
 `;
 
 const ContactInfo = styled.div`
   display: flex;
   align-items: center;
-  margin: 15px 0;
-  font-size: 16px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   transition: color 0.3s ease;
-
+  
   &:hover {
-    color: #f2d472;
+    color: #ff4500;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+    color: #ff4500;
   }
 `;
 
-const ContactIcon = styled.span`
-  margin-right: 10px;
-  color: #f2d472;
-`;
+const ColumnTitle = styled.h3`
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #ff4500;
+    transition: width 0.3s ease;
+  }
 
-const SocialIcons = styled.div`
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-`;
-
-const SocialIcon = styled.a`
-  color: #d4af37;
-  font-size: 24px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: #f2d472;
-    transform: scale(1.2);
+  &:hover:after {
+    width: 50px;
   }
 `;
 
-const WorkTimeItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+const LinkList = styled.ul`
+  list-style-type: none;
+  padding: 0;
 `;
 
-const Day = styled.span`
-  color: #d4af37;
+const LinkItem = styled.li`
+  margin-bottom: 0.5rem;
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    &:before {
+      content: '»';
+      color: #ff4500;
+      margin-right: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 1;
+      transform: translateX(5px);
+
+      &:before {
+        transform: translateX(3px);
+      }
+    }
+  }
 `;
 
-const Time = styled.span`
-  color: ${props => props.closed ? '#e74c3c' : '#f2d472'};
-  font-weight: ${props => props.closed ? 'bold' : 'normal'};
-`;
-
-const SubscribeForm = styled.form`
+const NewsletterForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
 `;
 
 const EmailInput = styled.input`
-  padding: 12px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid #d4af37;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #333;
+  background-color: #333;
   color: #fff;
-  margin-bottom: 10px;
-  font-size: 16px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
 
-  &::placeholder {
-    color: rgba(212, 175, 55, 0.7);
+  &:focus {
+    outline: none;
+    border-color: #ff4500;
   }
 `;
 
 const SubscribeButton = styled.button`
-  padding: 12px 20px;
-  background-color: #d4af37;
-  color: #111;
+  padding: 0.75rem;
+  background-color: #ff4500;
+  color: #ffffff;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
   font-weight: bold;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #f2d472;
-    box-shadow: 0 0 10px rgba(242, 212, 114, 0.5);
+    background-color: #ff6347;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
 const Copyright = styled.div`
   text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
-  color: #888;
-  font-size: 14px;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  
+  a {
+    color: #ffffff;
+    background-color: #333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: #ff4500;
+      transform: translateY(-3px);
+    }
+  }
 `;
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email) {
+      setEmailError('Please enter your email');
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Please enter a valid email');
+    } else {
+      setEmailError('');
+      console.log('Subscribed:', email);
+      // Here you would typically send the email to your server
+      setEmail('');
+    }
+  };
+
   return (
     <FooterContainer>
-      <ContentWrapper>
-        <Section>
-          <Title>Contact Us</Title>
+      <FooterContent>
+        <Column>
+          <Logo>
+            <img src="/api/placeholder/120/40" alt="Printex Logo" />
+          </Logo>
+          <CompanyInfo>
+            We are many variations of passages available but the majority have suffered alteration in some form by injected humour words believable.
+          </CompanyInfo>
           <ContactInfo>
-            <ContactIcon><FaMapMarkerAlt /></ContactIcon>
-            Peepal Bot, Chabahil,Kathmandu
+            <Phone size={18} aria-hidden="true" />
+            <a href="tel:+21236547898" aria-label="Phone number">+2 123 654 7898</a>
           </ContactInfo>
           <ContactInfo>
-            <ContactIcon><FaPhone /></ContactIcon>
-            9823024510
+            <MapPin size={18} aria-hidden="true" />
+            <address>25/B Milford Road, New York</address>
           </ContactInfo>
           <ContactInfo>
-            <ContactIcon><FaEnvelope /></ContactIcon>
-            <a href="mailto:teyungstattoink@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>teyungstattoink@gmail.com</a>
+            <Mail size={18} aria-hidden="true" />
+            <a href="mailto:info@example.com" aria-label="Email address">info@example.com</a>
           </ContactInfo>
-          <SocialIcons>
-            <SocialIcon href="https://www.instagram.com/teyung_tattoo_removal?igsh=MWYzdmNkZDlzNDR2ZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><FaInstagram /></SocialIcon>
-            <SocialIcon href="https://www.facebook.com/profile.php?id=100045144070566&locale=np" target="_blank" rel="noopener noreferrer"><FaFacebookF /></SocialIcon>
-          </SocialIcons>
-        </Section>
+        </Column>
         
-        <Section>
-          <Title>Studio Hours</Title>
-          <WorkTimeItem><Day>Sunday - Saturday</Day><Time>10:00 Am - 05:00 Pm</Time></WorkTimeItem>
-          {/* <WorkTimeItem><Day>Saturday</Day><Time>1:00 Am - 05:00 Pm</Time></WorkTimeItem> */}
-        </Section>
+        <Column>
+          <ColumnTitle>Quick Links</ColumnTitle>
+          <LinkList>
+            <LinkItem><a href="#about">About Us</a></LinkItem>
+            <LinkItem><a href="#faq">FAQ's</a></LinkItem>
+            <LinkItem><a href="#terms">Terms Of Service</a></LinkItem>
+            <LinkItem><a href="#privacy">Privacy policy</a></LinkItem>
+            <LinkItem><a href="#services">Our Services</a></LinkItem>
+            <LinkItem><a href="#blog">Latest Blog</a></LinkItem>
+          </LinkList>
+        </Column>
         
-        <Section>
-          <Title>Quick Links</Title>
-          <ContactInfo><a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a></ContactInfo>
-          <ContactInfo><a href="/about" style={{ color: 'inherit', textDecoration: 'none' }}>About Us</a></ContactInfo>
-          <ContactInfo><a href="/gallery" style={{ color: 'inherit', textDecoration: 'none' }}>Gallery</a></ContactInfo>
-          <ContactInfo><a href="/contact" style={{ color: 'inherit', textDecoration: 'none' }}>Contact</a></ContactInfo>
-        </Section>
+        <Column>
+          <ColumnTitle>Our Services</ColumnTitle>
+          <LinkList>
+            <LinkItem><a href="#offset">Offset Printing</a></LinkItem>
+            <LinkItem><a href="#business-card">Business Card</a></LinkItem>
+            <LinkItem><a href="#design">Design & Branding</a></LinkItem>
+            <LinkItem><a href="#3d-printing">3D Design & Printing</a></LinkItem>
+            <LinkItem><a href="#mug-printing">Mug Printing</a></LinkItem>
+            <LinkItem><a href="#tshirt-printing">T-Shirt Printing</a></LinkItem>
+          </LinkList>
+        </Column>
         
-        <Section>
-          <Title>Stay Connected</Title>
-          <p style={{ marginBottom: '15px' }}>Subscribe for exclusive designs, artist features, and special offers.</p>
-          <SubscribeForm>
-            <EmailInput type="email" placeholder="Enter your email" />
-            <SubscribeButton type="submit">Subscribe</SubscribeButton>
-          </SubscribeForm>
-        </Section>
-      </ContentWrapper>
+        <Column>
+          <ColumnTitle>Newsletter</ColumnTitle>
+          <CompanyInfo>Subscribe Our Newsletter To Get Latest Update And News</CompanyInfo>
+          <NewsletterForm onSubmit={handleSubmit}>
+            <EmailInput 
+              type="email" 
+              placeholder="Your Email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-label="Email for newsletter"
+              aria-invalid={emailError ? "true" : "false"}
+            />
+            {emailError && <p role="alert" style={{color: '#ff4500', fontSize: '0.8rem'}}>{emailError}</p>}
+            <SubscribeButton type="submit">
+              Subscribe Now
+            </SubscribeButton>
+          </NewsletterForm>
+        </Column>
+      </FooterContent>
+      
       <Copyright>
-        © 2020 Teyungs Tattoo Studio. All rights reserved.
+        <span>© Copyright 2024 PRINTEX All Rights Reserved.</span>
+        <SocialIcons>
+          <a href="#facebook" aria-label="Facebook"><i className="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#twitter" aria-label="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="#linkedin" aria-label="LinkedIn"><i className="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="#youtube" aria-label="YouTube"><i className="fab fa-youtube" aria-hidden="true"></i></a>
+        </SocialIcons>
       </Copyright>
     </FooterContainer>
   );

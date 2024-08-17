@@ -1,268 +1,143 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
-// Replace this with your tattoo-related video
-import tattooVideo from '../../assets/gallary/video-006f44010774049daa42fcf626764876-V.mp4';
 
-const breakpoints = {
-  mobile: '576px',
-  tablet: '768px',
-  desktop: '1024px',
-};
-
-const HeroSection = styled.section`
+const HeroContainer = styled.div`
+  display: flex;
+  height: 600px;
   position: relative;
-  height: 80vh;
-  width: 100%;
   overflow: hidden;
-  background-color: #111;
 `;
 
-const VideoBackground = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.7;
+const LeftSection = styled.div`
+  width: 55%;
+  background-color: #1a2352;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  z-index: 1;
 `;
 
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('path_to_your_tattoo_pattern.png');
-    opacity: 0.05;
-    z-index: 1;
-  }
+const RightSection = styled.div`
+  width: 45%;
+  background-color: #ff5733;
+  position: relative;
 `;
 
-const ContentWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 80px 10%;
-  color: #f5f5f5;
-  z-index: 2;
-
-  @media (max-width: ${breakpoints.desktop}) {
-    padding: 60px 8%;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    padding: 40px 6%;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 30px 5%;
-  }
-`;
-
-const SubHeader = styled(motion.h2)`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  color: #cccccc;
-
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 1.8rem;
-    letter-spacing: 5px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.6rem;
-    letter-spacing: 4px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1.4rem;
-    letter-spacing: 3px;
-  }
-`;
-
-const Title = styled(motion.h1)`
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 5.5rem;
-  font-weight: 700;
-  line-height: 1.1;
+const WelcomeText = styled.h3`
+  color: #ff5733;
+  font-size: 24px;
   margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #d4af37;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(212, 175, 55, 0.5);
-
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 4.5rem;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 3.5rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 2.5rem;
-  }
+  font-weight: normal;
 `;
 
-const Description = styled(motion.p)`
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  max-width: 600px;
+const MainHeading = styled.h1`
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+`;
+
+const SubText = styled.p`
+  color: #a0a0a0;
+  font-size: 16px;
   margin-bottom: 30px;
+  max-width: 80%;
   line-height: 1.6;
-  color: #cccccc;
-
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 1.2rem;
-    max-width: 550px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 1.1rem;
-    max-width: 100%;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 1rem;
-  }
 `;
 
-const CTAButton = styled(motion.a)`
-  display: inline-block;
-  background-color: #d4af37;
-  color: #000;
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 12px 30px;
+const CtaButton = styled.button`
+  background-color: #ff5733;
+  color: white;
   border: none;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    background-color: #fff;
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
-  }
-
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 1rem;
-    padding: 10px 25px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 0.9rem;
-    padding: 10px 20px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 0.8rem;
-    padding: 8px 18px;
-    letter-spacing: 1px;
-  }
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
 `;
 
-const ArtisticElement = styled.div`
+const ProductImage = styled.img`
   position: absolute;
-  top: 40px;
-  right: 40px;
-  width: 120px;
-  height: 120px;
-  background-image: url('path_to_your_tattoo_icon.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.7;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 90%;
+  object-fit: contain;
   z-index: 2;
-
-  @media (max-width: ${breakpoints.desktop}) {
-    width: 100px;
-    height: 100px;
-    top: 30px;
-    right: 30px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 80px;
-    height: 80px;
-    top: 20px;
-    right: 20px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 60px;
-    height: 60px;
-    top: 15px;
-    right: 15px;
-  }
 `;
 
-const TattooHeroComponent = () => {
+const NavArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+`;
+
+const LeftArrow = styled(NavArrow)`
+  left: 20px;
+`;
+
+const RightArrow = styled(NavArrow)`
+  right: 20px;
+`;
+
+const Shape = styled.div`
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+`;
+
+const Circle = styled(Shape)`
+  border-radius: 50%;
+`;
+
+const HalfCircle = styled(Shape)`
+  border-radius: 50% 50% 0 0;
+`;
+
+const Triangle = styled(Shape)`
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+`;
+
+const HeroSection = () => {
   return (
-    <HeroSection>
-      <VideoBackground autoPlay loop muted playsInline>
-        <source src={tattooVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </VideoBackground>
-      <Overlay />
-      <ArtisticElement />
-      <ContentWrapper>
-        <SubHeader
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          Turn your ideas into living art
-        </SubHeader>
-        <Title
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
-          Teyungs Tattoo Studio
-        </Title>
-        <Description
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-        >
-          From traditional Nepali designs to modern 
-          masterpieces, we bring your vision to life. Experience top-notch tattooing 
-          in the heart of Kathmandu.
-        </Description>
-        <CTAButton
-          href=""
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-        >
-          Explore Our Art
-        </CTAButton>
-      </ContentWrapper>
-    </HeroSection>
+    <HeroContainer>
+      <LeftSection>
+        <WelcomeText>Welcome To Printex!</WelcomeText>
+        <MainHeading>Digital Printing Solution For You</MainHeading>
+        <SubText>
+          There are many variations of passages orem ipsum available but the majority
+          have suffered alteration in some form by injected humour or randomised words
+          which don't look even slightly believable.
+        </SubText>
+        <CtaButton>About More</CtaButton>
+      </LeftSection>
+      <RightSection>
+        <ProductImage src="/api/placeholder/400/600" alt="Printed Products" />
+        <Circle style={{ width: '100px', height: '100px', top: '10%', right: '20%' }} />
+        <Circle style={{ width: '50px', height: '50px', top: '30%', right: '10%' }} />
+        <Circle style={{ width: '150px', height: '150px', bottom: '20%', right: '-5%' }} />
+        <HalfCircle style={{ width: '80px', height: '40px', top: '60%', left: '10%' }} />
+        <Triangle style={{ width: '60px', height: '60px', top: '20%', left: '30%' }} />
+      </RightSection>
+      <LeftArrow>&lt;</LeftArrow>
+      <RightArrow>&gt;</RightArrow>
+    </HeroContainer>
   );
 };
 
-export default TattooHeroComponent;
+export default HeroSection;

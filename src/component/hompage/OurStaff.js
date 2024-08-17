@@ -1,169 +1,249 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import staff1 from '../../assets/services/tattooing.jpg';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Star, ShoppingBag } from 'lucide-react';
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-const slideIn = keyframes`
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-`;
-
-const StaffSection = styled.section`
-  background-color: #111;
-  color: #d4af37;
-  // padding: 90px 80px;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('path-to-tattoo-pattern.png') repeat;
-    opacity: 0.05;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    padding: 40px 20px;
-  }
-`;
-
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 2;
+const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Title = styled.h2`
+  font-size: 28px;
+  font-weight: bold;
+`;
+
+const MoreProductsButton = styled.button`
+  background-color: #FF7F50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
+const CategoryFilter = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+`;
+
+const CategoryButton = styled.button`
+  background-color: ${props => props.active ? '#FFE4E1' : 'white'};
+  color: ${props => props.active ? '#FF7F50' : 'black'};
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #FFE4E1;
+  }
+`;
+
+const ProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+`;
+
+const ProductCard = styled.div`
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Title = styled.h2`
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 2.5rem;
-  color: #d4af37;
-  margin-bottom: 40px;
-  position: relative;
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-align: center;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #d4af37, transparent);
-  }
-
-  animation: ${fadeIn} 1s ease-out;
-`;
-
-const StaffMember = styled.div`
-  text-align: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 400px;
+const ProductImage = styled.img`
   width: 100%;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
-  }
-`;
-
-const StaffImageWrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  position: relative;
-  border: 3px solid #d4af37;
-  box-shadow: 0 0 0 3px #111, 0 0 0 6px #d4af37;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
-    z-index: 1;
-  }
-`;
-
-const StaffImage = styled.img`
-  width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
-  filter: grayscale(50%);
-  transition: filter 0.3s ease, transform 0.3s ease;
-
-  ${StaffMember}:hover & {
-    filter: grayscale(0%);
-    transform: scale(1.05);
-  }
+  border-radius: 8px;
+  margin-bottom: 10px;
 `;
 
-const StaffInfo = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  text-align: center;
-  z-index: 2;
+const ProductCategory = styled.span`
+  color: #777;
+  font-size: 14px;
 `;
 
-const StaffName = styled.h3`
-  font-size: 24px;
-  margin: 0 0 5px 0;
-  color: #fff;
-  font-family: 'Cinzel Decorative', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+const ProductName = styled.h3`
+  margin: 5px 0;
+  font-size: 18px;
 `;
 
-const StaffTitle = styled.p`
-  font-size: 16px;
-  color: #d4af37;
-  margin: 0 0 15px 0;
-  font-style: italic;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+const ProductRating = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
-const OurStaff = () => {
+const ProductPrice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const DiscountedPrice = styled.span`
+  color: #FF7F50;
+  font-weight: bold;
+`;
+
+const OriginalPrice = styled.span`
+  text-decoration: line-through;
+  color: #777;
+  margin-right: 5px;
+`;
+
+const AddToCartButton = styled.button`
+  background-color: #FFE4E1;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const ProductCategoryComponent = () => {
+  const [activeCategory, setActiveCategory] = useState('View All');
+
+  const categories = ['View All', 'Apparel', 'Branding', 'Calendars', 'Packaging', 'Present', 'Stationery'];
+  
+  const products = [
+    { 
+      id: 1, 
+      name: 'Custom T-Shirt Printing', 
+      category: 'Apparel', 
+      image: '/path/to/tshirt-printing.jpg', 
+      rating: 5, 
+      price: 18.00, 
+      originalPrice: 20.00 
+    },
+    { 
+      id: 2, 
+      name: 'Business Card Design', 
+      category: 'Branding', 
+      image: '/path/to/business-card.jpg', 
+      rating: 5, 
+      price: 45.00, 
+      originalPrice: 50.00 
+    },
+    { 
+      id: 3, 
+      name: 'Custom Wall Calendar', 
+      category: 'Calendars', 
+      image: '/path/to/wall-calendar.jpg', 
+      rating: 4, 
+      price: 22.00 
+    },
+    { 
+      id: 4, 
+      name: 'Branded Gift Box', 
+      category: 'Packaging', 
+      image: '/path/to/gift-box.jpg', 
+      rating: 5, 
+      price: 15.00, 
+      originalPrice: 18.00 
+    },
+    { 
+      id: 5, 
+      name: 'Personalized Mug Printing', 
+      category: 'Present', 
+      image: '/path/to/mug-printing.jpg', 
+      rating: 4, 
+      price: 12.00 
+    },
+    { 
+      id: 6, 
+      name: 'Custom Letterhead Design', 
+      category: 'Stationery', 
+      image: '/path/to/letterhead.jpg', 
+      rating: 5, 
+      price: 35.00, 
+      originalPrice: 40.00 
+    },
+    { 
+      id: 7, 
+      name: 'Embroidered Cap', 
+      category: 'Apparel', 
+      image: '/path/to/embroidered-cap.jpg', 
+      rating: 4, 
+      price: 25.00 
+    },
+    { 
+      id: 8, 
+      name: 'Logo Design Service', 
+      category: 'Branding', 
+      image: '/path/to/logo-design.jpg', 
+      rating: 5, 
+      price: 150.00, 
+      originalPrice: 180.00 
+    }
+  ];
+
+  const filteredProducts = activeCategory === 'View All' 
+    ? products 
+    : products.filter(product => product.category === activeCategory);
+
   return (
-    <StaffSection>
-      <ContentWrapper>
-        <Title>Our Tattoo Artist</Title>
-        <StaffMember>
-          <StaffImageWrapper>
-            <StaffImage src={staff1} alt="Sandip Lama" />
-            <StaffInfo>
-              <StaffName>Kamal Sing Limbu</StaffName>
-              <StaffTitle>Founder & Master Tattoo Artist</StaffTitle>
-            </StaffInfo>
-          </StaffImageWrapper>
-        </StaffMember>
-      </ContentWrapper>
-    </StaffSection>
+    <Container>
+      <Header>
+        <Title>List of Our Popular Products</Title>
+        <MoreProductsButton>MORE PRODUCTS</MoreProductsButton>
+      </Header>
+      
+      <CategoryFilter>
+        {categories.map(category => (
+          <CategoryButton 
+            key={category} 
+            active={activeCategory === category}
+            onClick={() => setActiveCategory(category)}
+          >
+            {category}
+          </CategoryButton>
+        ))}
+      </CategoryFilter>
+      
+      <ProductGrid>
+        {filteredProducts.map(product => (
+          <ProductCard key={product.id}>
+            <ProductImage src={product.image} alt={product.name} />
+            <ProductCategory>{product.category}</ProductCategory>
+            <ProductName>{product.name}</ProductName>
+            <ProductRating>
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} fill={i < product.rating ? "#FFD700" : "none"} stroke="#FFD700" size={16} />
+              ))}
+            </ProductRating>
+            <ProductPrice>
+              <div>
+                {product.originalPrice && <OriginalPrice>${product.originalPrice.toFixed(2)}</OriginalPrice>}
+                <DiscountedPrice>${product.price.toFixed(2)}</DiscountedPrice>
+              </div>
+              <AddToCartButton>
+                <ShoppingBag size={20} color="#FF7F50" />
+              </AddToCartButton>
+            </ProductPrice>
+          </ProductCard>
+        ))}
+      </ProductGrid>
+    </Container>
   );
 };
 
-export default OurStaff;
+export default ProductCategoryComponent;
