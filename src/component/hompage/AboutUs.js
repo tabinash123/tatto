@@ -22,7 +22,9 @@ const AboutSection = styled.section`
   padding: 40px 20px;
   background-color: #111;
   color: #f5f5f5;
-   overflow: hidden;
+  position: relative;
+  overflow: hidden;
+
   &::before {
     content: '';
     position: absolute;
@@ -34,33 +36,39 @@ const AboutSection = styled.section`
     opacity: 0.05;
     z-index: 0;
   }
+
   @media (min-width: 768px) {
     padding: 60px 40px;
   }
+
   @media (min-width: 1024px) {
     padding: 80px 60px;
   }
 `;
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
-    position: relative;
+  position: relative;
   z-index: 1;
+
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
-    @media (min-width: 1024px) {
+
+  @media (min-width: 1024px) {
     gap: 60px;
   }
-  `;
+`;
 
 const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
+
 const Title = styled.h2`
   font-family: 'Cinzel Decorative', cursive;
   font-size: 2rem;
@@ -70,6 +78,7 @@ const Title = styled.h2`
   padding-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
+
   &::after {
     content: '';
     position: absolute;
@@ -79,15 +88,18 @@ const Title = styled.h2`
     height: 2px;
     background: linear-gradient(to right, #d4af37, transparent);
   }
+
   animation: ${fadeIn} 1s ease-out;
+
   @media (min-width: 768px) {
     font-size: 2.25rem;
     margin-bottom: 20px;
   }
+
   @media (min-width: 1024px) {
     font-size: 2.5rem;
   }
-  `;
+`;
 
 const Subtitle = styled.h3`
   font-family: 'Cormorant Garamond', serif;
@@ -96,15 +108,18 @@ const Subtitle = styled.h3`
   margin-bottom: 15px;
   font-weight: 300;
   font-style: italic;
+
   animation: ${slideIn} 1s ease-out 0.3s both;
+
   @media (min-width: 768px) {
     font-size: 1.5rem;
   }
-    @media (min-width: 1024px) {
+
+  @media (min-width: 1024px) {
     font-size: 1.75rem;
     margin-bottom: 20px;
   }
-  `;
+`;
 
 const Description = styled.p`
   font-family: 'Cormorant Garamond', serif;
@@ -114,71 +129,86 @@ const Description = styled.p`
   font-size: 1rem;
   position: relative;
   padding-left: 20px;
+
   &::before {
     content: '✦';
     position: absolute;
     left: 0;
     color: #d4af37;
   }
+
   animation: ${slideIn} 1s ease-out 0.6s both;
+
   @media (min-width: 768px) {
     font-size: 1.1rem;
     line-height: 1.7;
   }
+
   @media (min-width: 1024px) {
     font-size: 1.2rem;
     line-height: 1.8;
     margin-bottom: 20px;
   }
 `;
+
 const StatsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   margin-top: 30px;
+
   animation: ${fadeIn} 1s ease-out 1s both;
+
   @media (min-width: 768px) {
     gap: 20px;
     margin-top: 40px;
   }
-  `;
-  const StatItem = styled.div`
+`;
+
+const StatItem = styled.div`
   text-align: center;
   padding: 15px;
   background-color: rgba(212, 175, 55, 0.1);
   border: 1px solid rgba(212, 175, 55, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
   }
+
   @media (min-width: 1024px) {
     padding: 20px;
-      }
+  }
 `;
 
 const StatNumber = styled.div`
   font-family: 'Cinzel Decorative', cursive;
   font-size: 1.5rem;
   color: #d4af37;
-    font-weight: bold;
+  font-weight: bold;
   margin-bottom: 5px;
+
   @media (min-width: 768px) {
     font-size: 1.75rem;
   }
+
   @media (min-width: 1024px) {
     font-size: 2rem;
   }
 `;
+
 const StatLabel = styled.div`
   font-family: 'Cormorant Garamond', serif;
   color: #f2d472;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+
   @media (min-width: 768px) {
     font-size: 0.85rem;
   }
+
   @media (min-width: 1024px) {
     font-size: 0.9rem;
   }
@@ -187,6 +217,7 @@ const StatLabel = styled.div`
 const ImageWrapper = styled.div`
   position: relative;
   height: 250px;
+
   &::before {
     content: '';
     position: absolute;
@@ -199,10 +230,12 @@ const ImageWrapper = styled.div`
   }
 
   animation: ${fadeIn} 1s ease-out 0.3s both;
+
   @media (min-width: 768px) {
     height: 100%;
     min-height: 350px;
   }
+
   @media (min-width: 1024px) {
     min-height: 450px;
     &::before {
@@ -222,36 +255,38 @@ const Image = styled.img`
   z-index: 2;
   filter: grayscale(30%) contrast(110%);
   transition: filter 0.3s ease;
+
   &:hover {
     filter: grayscale(0%) contrast(100%);
-      }
+  }
 `;
+
 const AboutUs = () => (
   <AboutSection>
     <Grid>
       <ContentArea>
         <Title>The Art of Ink</Title>
-        <Subtitle>Crafting Timeless Art Since 2018</Subtitle>
-   <Description>
-          Founded by passionate artist Name of the Kamal Sing Limbu, Teyungs Tattoo Studio has become one of Kathmandu's premier tattoo studios, offering expertise in diverse tattoo styles and piercings.
+        <Subtitle>Crafting Timeless Art Since 2013</Subtitle>
+        <Description>
+          Founded by passionate artist Name of the owner, Teyungs Tattoo Studio has become one of Kathmandu's premier tattoo studios, offering expertise in diverse tattoo styles and piercings.
         </Description>
         <Description>
           Our team of skilled artists excels in both modern and traditional designs, constantly evolving our techniques to create true masterpieces on skin.
-    </Description>
-        <StatsGrid>
+        </Description>
+        {/* <StatsGrid>
           <StatItem>
-            <StatNumber>7+</StatNumber>
+            <StatNumber>10+</StatNumber>
             <StatLabel>Years of Artistry</StatLabel>
           </StatItem>
           <StatItem>
-            <StatNumber>100+</StatNumber>
+            <StatNumber>50+</StatNumber>
             <StatLabel>Unique Designs</StatLabel>
           </StatItem>
           <StatItem>
             <StatNumber>#1</StatNumber>
             <StatLabel>in Kathmandu</StatLabel>
           </StatItem>
-        </StatsGrid>
+        </StatsGrid> */}
       </ContentArea>
       <ImageWrapper>
         <Image src={artist} alt="Teyungs Tattoo Studio" />

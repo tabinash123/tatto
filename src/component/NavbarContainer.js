@@ -23,6 +23,7 @@ const NavbarContainer = styled.div`
   position: relative;
   min-height: 140px;
   box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+
   @media (max-width: ${breakpoints.mobile}) {
     padding: 10px 15px;
     min-height: 80px;
@@ -42,14 +43,13 @@ const LogoWrapper = styled.div`
     0 0 10px rgba(212, 175, 55, 0.5),
     0 0 20px rgba(212, 175, 55, 0.3),
     0 0 30px rgba(212, 175, 55, 0.1);
-  
+
   @media (max-width: ${breakpoints.mobile}) {
     position: static;
     transform: none;
     margin: 0;
-      width: fit-content;
+    width: fit-content;
   }
-  
 `;
 
 const Logo = styled.img`
@@ -60,7 +60,6 @@ const Logo = styled.img`
 
   @media (max-width: ${breakpoints.mobile}) {
     height: 60px; // Further reduced size for mobile
-  
   }
 `;
 
@@ -69,16 +68,15 @@ const NavItems = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: 1400px;
+
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
-  
   }
 `;
 
 const NavGroup = styled.div`
   display: flex;
   gap: 40px;
-
 `;
 
 const NavItem = styled(Link)`
@@ -86,13 +84,13 @@ const NavItem = styled(Link)`
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-
   text-decoration: none;
   position: relative;
   font-family: 'Cinzel Decorative', cursive;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
+
   &::after {
     content: '';
     position: absolute;
@@ -104,24 +102,27 @@ const NavItem = styled(Link)`
     transform: scaleX(0);
     transition: transform 0.3s ease;
   }
-  
+
   &:hover {
     color: #fff;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
   }
+
   &:hover::after {
     transform: scaleX(1);
   }
 `;
+
 const ContactInfo = styled.div`
   color: #d4af37;
   font-size: 20px;
   font-weight: 700;
   font-family: 'Fira Sans', sans-serif;
   text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
-}
+  }
 `;
 
 const MenuIcon = styled.div`
@@ -135,10 +136,10 @@ const MenuIcon = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     display: block;
   }
+
   @media (max-width: ${breakpoints.mobile}) {
     top: 50%;
     transform: translateY(-50%);
-
   }
 `;
 
@@ -153,18 +154,16 @@ const Drawer = styled.div`
   z-index: 1000;
   border-left: 3px solid #d4af37;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-
 `;
 
 const DrawerHeader = styled.div`
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   border-bottom: 2px solid #d4af37;
 `;
-  
+
 const DrawerLogo = styled.div`
   img {
     height: 60px;
@@ -172,10 +171,10 @@ const DrawerLogo = styled.div`
     border-radius: 50%;
   }
 `;
+
 const DrawerCloseButton = styled.div`
   cursor: pointer;
   color: #d4af37;
-
 `;
 
 const DrawerNavItems = styled.div`
@@ -195,32 +194,29 @@ const DrawerNavItem = styled(Link)`
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
+
   &:last-child {
     border-bottom: none;
   }
+
   &:hover {
     color: #fff;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-
   }
 `;
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
-
   };
 
   return (
     <NavbarContainer>
-      <NavItem to="/">
       <LogoWrapper>
         <Logo src={logo} alt="Teyung's Laser Removal, Tattoo & Piercing" />
-        </LogoWrapper>
-     </NavItem>
+      </LogoWrapper>
       <NavItems>
         <NavGroup>
           <NavItem to="/">Home</NavItem>
@@ -252,7 +248,7 @@ const Navbar = () => {
         </DrawerNavItems>
       </Drawer>
     </NavbarContainer>
-     );
+  );
 };
 
 export default Navbar;
